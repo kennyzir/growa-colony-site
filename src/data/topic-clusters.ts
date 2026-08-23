@@ -50,12 +50,12 @@ export const topicClusters: TopicCluster[] = [
     currentAnswer: "Learn the colony-building loop (gather, build, expand), check verified codes, and track updates.",
     verificationBoundary: "Codes are verified against official sources; gameplay reflects the current build.",
     sections: [
-      { eyebrow: "Play", title: "Colony-building loop", body: "Gather resources → build structures → expand tunnels → upgrade production. The core loop." },
+      { eyebrow: "Play", title: "Colony-management loop", body: "As the Queen, grow Workers for food (economy), then raise Majors & Drones (combat). Balance is the core loop." },
       { eyebrow: "Track", title: "Codes & updates", body: "Verified code status (or honest none-yet) plus what changed in recent updates." },
       { eyebrow: "History", title: "Release & growth", body: "Created 31 July 2026; fast early start in the colony-sim niche." }
     ],
     faqs: [
-      { q: "What is Grow A Colony about?", a: "A Roblox colony-building game: play as an insect colony, gather resources, dig tunnels, build, and grow from a small nest into a thriving base." },
+      { q: "What is Grow A Colony about?", a: "A Roblox Animal Sim: play as the Queen of an AI colony, get Workers for food, and raise Majors & Drones to fight as you grow." },
       { q: "Is Grow A Colony a battle game?", a: "No — the focus is colony management and incremental growth, not PvP combat. Check the official page for current modes." },
       { q: "How do I get codes?", a: "We list only verified codes from an official source; if none are confirmed the codes page says so honestly." }
     ],
@@ -75,13 +75,13 @@ export const topicClusters: TopicCluster[] = [
     navTitle: "How to Play",
     title: "How to Play Grow A Colony",
     metaTitle: `Grow A Colony How to Play — ${monthLabel}`,
-    metaDescription: "How to play Grow A Colony: gather resources, build your first structures, expand tunnels, and grow your colony.",
+    metaDescription: "How to play Grow A Colony: rule as the Queen, get Workers for food, and raise Majors & Drones to fight.",
     intro: "Start by gathering base resources, build storage/workshop for continuous production, then expand toward higher-value areas.",
     demandSignal: "Players search how to play, what to build first, and how to grow fast.",
-    currentAnswer: "Gather wood/leaves, build a first structure, expand tunnels, and upgrade production before novelty.",
+    currentAnswer: "As the Queen, grow a Worker food economy, and when the colony sustains itself, raise Majors & Drones for combat.",
     verificationBoundary: "Gameplay reflects the current build; exact numbers are Community-reported unless confirmed in-game.",
     sections: [
-      { eyebrow: "First day", title: "The core loop", body: "Gather base resources → build your first structure → expand tunnels → upgrade production." },
+      { eyebrow: "First day", title: "The core loop", body: "Know your Queen role → get Workers for food → raise Majors & Drones to fight → balance economy and defense." },
       { eyebrow: "Common pitfalls", title: "What to avoid", body: "Don't blow everything on novelty; production upgrades pay back long-term. Expanding territory drives the mid game." }
     ],
     faqs: [

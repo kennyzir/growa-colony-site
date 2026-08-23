@@ -81,7 +81,7 @@ export default async function ReleaseDatePage({ params }: { params: Promise<{ lo
     faq2q: isEs ? "¿La fecha de creación significa que no se actualiza?" : "Does the created date mean it does not get updates?",
     faq2a: isEs ? "No. Created es cuándo se lanzó; el juego recibe ajustes con el tiempo (consulta la página de actualizaciones)." : "No. Created is when it launched; the game receives tweaks over time (see the updates page).",
     faq3q: isEs ? "¿Es apto para niños?" : "Is it kid-friendly?",
-    faq3a: isEs ? "Es un juego de construcción de colonia en Roblox, una plataforma diseñada para menores. Como cualquier comunidad abierta, la supervisión varía. Como cualquier comunidad abierta, la supervisión varía." : "It is a colony-building game on Roblox, a platform designed for kids. As with any open community, supervision varies. As with any open community, supervision varies.",
+    faq3a: isEs ? "Es un juego de gestión de colonia (Reina + Obreras/Súper/Zánganos) en Roblox, una plataforma diseñada para menores. Como cualquier comunidad abierta, la supervisión varía." : "It is a colony-management game (Queen + Workers/Majors/Drones) on Roblox, a platform designed for kids. As with any open community, supervision varies.",
     nextEyebrow: isEs ? "Explora" : "Explore",
     nextTitle: isEs ? "Sigue explorando" : "Keep exploring",
     howLink: isEs ? "Cómo jugar" : "How to play",

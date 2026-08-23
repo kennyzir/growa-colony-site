@@ -9,7 +9,7 @@ export const siteConfig: SiteConfig = {
   domain: gameConfig.domain,
   gameName: gameConfig.name,
   description: "Grow A Colony codes, how-to-play, beginner progression, release date, and updates — a focused Roblox Grow A Colony fan wiki.",
-  valueProposition: "Grow A Colony is a Roblox colony-building game where you play as a termite/insect colony: gather resources, expand tunnels, upgrade your colony, and grow it from a small nest to a thriving base. Here you can check active codes, learn the core gameplay loop, follow a beginner progression route, and track updates.",
+  valueProposition: "Grow A Colony is a Roblox Animal Sim where you rule as the Queen of an AI colony: get Workers for food and Majors & Drones for fighting, balancing economy and defense as you grow. Here you can check active codes, learn the core gameplay loop, follow a beginner progression route, and track updates.",
   shortDisclosure: `${gameConfig.name} is an unofficial fan-made resource. Roblox and the Grow A Colony dev team remain the source of record.`,
   lastUpdated: checkedDate,
   freshnessLabel: "codes, guide, and update status refreshed on August 23, 2026",
@@ -74,7 +74,7 @@ export const toolCards: LinkCard[] = [
   {
     title: "How to Play",
     href: "/en/how-to-play",
-    description: "The core loop — gather resources, dig tunnels, upgrade your colony.",
+    description: "The core loop — rule as the Queen, get Workers for food, and raise Majors & Drones to fight.",
     miniLabel: "Play"
   },
   {
@@ -95,7 +95,7 @@ export const guideClusters: LinkCard[] = [
   {
     title: "How to Play",
     href: "/en/how-to-play",
-    description: "Gather resources, expand tunnels, and upgrade your colony step by step.",
+    description: "Rule as the Queen: get Workers for food and learn the colony loop step by step.",
     miniLabel: "Guide"
   },
   {
@@ -136,7 +136,7 @@ export const playerJourney: PlayerJourneyStage[] = [
     number: "2",
     title: "Build the Colony",
     question: "How do I grow my colony?",
-    answer: "Gather resources, dig tunnels, and upgrade structures to grow from a small nest to a thriving base.",
+    answer: "Rule as the Queen of an AI colony: get Workers for food and Majors & Drones for fighting, balancing economy and defense as you grow.",
     href: "/en/how-to-play",
     links: [
       { label: "How to Play", href: "/en/how-to-play", description: "Gather, expand, upgrade — the core loop." },
@@ -217,7 +217,7 @@ export const videoGuides: LinkCard[] = [];
 
 export const faqs: Record<"home" | "codes", FaqItem[]> = {
   home: [
-    { q: "What is Grow A Colony?", a: "Grow A Colony is a Roblox colony-building game where you play as a termite/insect colony: gather resources, expand, and upgrade to grow from a small nest to a thriving base." },
+    { q: "What is Grow A Colony?", a: "Grow A Colony is a Roblox Animal Sim where you play as the Queen of an AI colony, gathering Workers for food and raising Majors & Drones to grow your colony." },
     { q: "Are there Grow A Colony codes?", a: "We list only codes we can verify from an official source. If none are confirmed, the codes page says so honestly rather than inventing working codes." },
     { q: "Do I need to know anything before playing?", a: "The how-to-play page covers the core loop and a beginner route, so you start with a plan for how to grow your colony." }
   ],

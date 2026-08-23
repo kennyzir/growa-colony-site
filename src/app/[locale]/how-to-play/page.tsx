@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: locale === "es" ? `Cómo jugar Grow A Colony — empezar tu colonia · ${monthLabel}` : `How to Play Grow A Colony — Grow Your Colony · ${monthLabel}`,
     description: locale === "es"
       ? "Guía para empezar en Grow A Colony: recolecta recursos, cava túneles, construye y haz crecer tu colonia. Pasos claros."
-      : "Getting started guide for Grow A Colony: gather resources, dig tunnels, build, and grow your colony. Clear steps.",
+      : "Getting started guide for Grow A Colony: rule as the Queen, get Workers for food, and raise Majors & Drones to fight. Clear steps.",
     alternates: { canonical: `${base}${path}/`, languages: { en: `${base}/en/how-to-play/`, es: `${base}/es/how-to-play/`, "x-default": `${base}/en/how-to-play/` } }
   };
 }
@@ -59,18 +59,35 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
       ? "El objetivo temprano es sencillo: consigue recursos y conviértelos en producción para que tu colonia se sostenga sola."
       : "The early goal is simple: get resources and convert them into production so your colony sustains itself.",
     section2Steps: isEs ? [
-        ["Entra al juego", "Entra al mundo de Grow A Colony desde la página oficial de Roblox. Unirse a un servidor con pocos jugadores suele ser más tranquilo."],
-        ["Recolecta recursos base", "Empieza por lo básico: madera y hojas. Son la entrada a casi todas las primeras construcciones."],
-        ["Construye tu primera estructura", "Usa recursos para construir el primer almacén/taller que produzca de forma continua."],
-        ["Expande túneles", "Cava hacia nuevas zonas con más recursos. Más territorio = más producción cada ciclo."],
-        ["Mejora y repite", "Cada estructura tiene mejoras. Sube la producción antes de gastar en novedades."],
-      ] : [
-        ["Join the game", "Enter the Grow A Colony world from the official Roblox page. Joining a lower-player-count server is usually calmer."],
-        ["Gather base resources", "Start with the basics: wood and leaves. They feed nearly every early build."],
-        ["Build your first structure", "Spend resources on a first storage/workshop that produces continuously."],
-        ["Expand tunnels", "Dig toward new zones with more resources. More territory = more production per cycle."],
-        ["Upgrade and repeat", "Every structure has upgrades. Raise production before spending on novelty."],
-      ],
+      ["Entra al juego", "Entra al mundo de Grow A Colony desde la página oficial de Roblox. Unirse a un servidor con pocos jugadores suele ser más tranquilo."],
+      ["Entiende tu rol de Reina", "No eres una unidad: gobiernas una colonia de IA. Tu trabajo es decidir qué caste crecer, no luchar tú misma."],
+      ["Consigue Obreras para la comida", "La descripción oficial es clara: las Obreras recolectan comida para alimentar la colonia. Es la economía del juego."],
+      ["Levanta Súper y Zánganos para luchar", "Cuando la colonia se sostenga, invierte en el caste de combate: Súper y Zánganos son tu fuerza de combate."],
+      ["Equilibra economía y defensa", "Demasiadas Obreras = hambre de comida sin defensa; demasiado combate = sin economía. El equilibrio es el juego."],
+    ] : [
+      ["Join the game", "Enter the Grow A Colony world from the official Roblox page. Joining a lower-player-count server is usually calmer."],
+      ["Know your Queen role", "You aren't a unit: you rule an AI colony. Your job is deciding which caste to grow, not fighting alone."],
+      ["Get Workers for food", "The official description is explicit: Workers collect food to feed the colony. That is the economy."],
+      ["Raise Majors & Drones to fight", "Once the colony sustains itself, invest in the combat caste — Majors & Drones are your fighting force."],
+      ["Balance economy and defense", "Too many Workers = no defense; too much combat = no economy. Balance is the game."],
+    ],
+    econEyebrow: isEs ? "Economía y combate" : "Economy & combat",
+    econT: isEs ? "Cómo funcionan economía y defensa" : "How the economy and defense work",
+    econB: isEs
+      ? "El núcleo de Grow A Colony, según la descripción oficial, es gestionar la colonia de IA en dos frentes: la economía (Obreras → comida) y el combate (Súper + Zánganos). No inventamos números: la tabla resume el concepto verificado, no cifras exactas."
+      : "The core of Grow A Colony, per the official description, is managing the AI colony on two fronts: the economy (Workers → food) and combat (Majors + Drones). We don't invent numbers: the table summarizes the verified concept, not exact figures.",
+    econRows: isEs ? [
+      ["Obreras = economía", "Gestionan la comida y el crecimiento de la colonia. Más Obreras = colonia que se sostiene."],
+      ["Súper + Zánganos = combate", "El caste ofensivo. La descripción oficial los lista juntos para luchar."],
+      ["La Reina = decisión", "Tú decides el balance entre Obreras y combatientes. Ése es el bucle de decisión."],
+    ] : [
+      ["Workers = economy", "Handle food and colony growth. More Workers = a colony that sustains itself."],
+      ["Majors + Drones = combat", "The offensive caste. The official description lists them together for fighting."],
+      ["The Queen = decision", "You choose the balance between Workers and fighters. That's the decision loop."],
+    ],
+    econNote: isEs
+      ? "Honestidad: no hay una fuente oficial con fecha que publique cifras exactas (costos de caste, producción por Obrera, poder de combate). Cuando un creador o la actualización oficial los confirme, esta sección se actualizará con números verificados. Hasta entonces, aquí no hay números inventados."
+      : "Honesty: there is no dated official source publishing exact figures (caste costs, per-Worker production, combat power). When a developer or the official update confirms them, this section will be updated with verified numbers. Until then, no numbers are invented here.",
     pitfallsEyebrow: isEs ? "Errores comunes" : "Common mistakes",
     pitfallsTitle: isEs ? "Qué evitar" : "What to avoid",
     pit1t: isEs ? "Gastar todo en novedades" : "Spending everything on novelty",
@@ -144,6 +161,22 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
           columns={[isEs ? "Unidad" : "Unit", isEs ? "Rol" : "Role", isEs ? "Misión en la colonia" : "Colony job"]}
           rows={gameEntities.map((e) => [e.name, e.role, e.colonyJob])}
         />
+      </section>
+
+      {/* Colony economy & combat concepts — official description backed, no invented numbers */}
+      <section className="mt-10">
+        <SectionHeader eyebrow={T.econEyebrow} title={T.econT} copy={T.econB} />
+        <div className="mt-4 grid gap-3 text-sm text-white/75">
+          {T.econRows.map((r: string[], i: number) => (
+            <div key={i} className="rounded-lg border border-white/10 bg-black/20 p-4">
+              <strong className="text-white">{r[0]}</strong>
+              <p className="mt-1 text-white/65">{r[1]}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 rounded-lg border border-dashed border-white/15 bg-black/10 p-4 text-xs leading-6 text-white/50">
+          {T.econNote}
+        </p>
       </section>
 
       <section className="mt-10">
