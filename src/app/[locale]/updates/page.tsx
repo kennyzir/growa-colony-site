@@ -5,7 +5,8 @@ import { setRequestLocale } from "next-intl/server";
 import { locales } from "@/i18n/locales";
 import { checkedDate, monthLabel, siteConfig } from "@/data/site";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
-import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
+import { Breadcrumbs, PageIntro, SectionHeader, TrustNote } from "@/components/ui/content";
+import { PlayQuickRules, VideoGuide } from "@/components/ui/EvomonBlocks";
 import { AdsterraArticleTop, AdsterraArticleMid } from "@/components/ads";
 
 export function generateStaticParams() {
@@ -96,6 +97,14 @@ export default async function UpdatesPage({ params }: { params: Promise<{ locale
       <FaqJsonLd items={[{ q: T.faq1q, a: T.faq1a }, { q: T.faq2q, a: T.faq2a }, { q: T.faq3q, a: T.faq3a }]} />
       <Breadcrumbs items={[{ label: T.crumb, href: `${prefix}/updates` }]} />
       <PageIntro eyebrow="Grow A Colony · Updates" title={T.introTitle} description={T.introDesc} />
+      <VideoGuide
+        eyebrow={isEs ? "Creadores" : "Creators"}
+        title={isEs ? "Video de la comunidad" : "Creator gameplay evidence"}
+        description={isEs
+          ? "Un ejemplo reciente del bucle de juego (construir una gran colonia de hormigas). Embed verificado con yt-dlp; úsalo para ver el estado del juego antes de que llegue una nota de parche oficial."
+          : "A recent look at the actual gameplay loop (building a big ant colony). Embed is yt-dlp-verified; use it to see the live game before official patch notes land."}
+        embedId="dFsI4mzo3gY"
+      />
       <AdsterraArticleTop />
 
       <section className="mt-10">

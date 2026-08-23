@@ -7,7 +7,7 @@ import { monthLabel, siteConfig } from "@/data/site";
 import { BreadcrumbJsonLd, FaqJsonLd, HowToJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 import { VerificationBox } from "@/components/ui/VerificationBox";
-import { PlayQuickRules, VideoGuide } from "@/components/ui/EvomonBlocks";
+import { PlayQuickRules, VideoGuide, DataTable } from "@/components/ui/EvomonBlocks";
 import { PerPageLinks } from "@/components/ui/PerPageLinks";
 import { AdsterraArticleTop, AdsterraArticleMid } from "@/components/ads";
 
@@ -100,6 +100,15 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
       <VerificationBox />
       <PageIntro eyebrow="Grow A Colony · How to Play" title={T.introTitle} description={T.introDesc} />
       <PlayQuickRules label={isEs ? "En 30 segundos" : "In 30 seconds"} rules={qrRules} />
+      {/* Creator evidence — real colony-play videos (yt-content-miner, yt-dlp-verified) */}
+      <VideoGuide
+        eyebrow={isEs ? "Creadores" : "Creators"}
+        title={isEs ? "Así se juega de verdad" : "Real colony gameplay"}
+        description={isEs
+          ? "Estos videos de creadores muestran el bucle real de construir una colonia de hormigas — no solo la descripción oficial. El embed es verificado (yt-dlp) y el texto del juego viene de ver el video, no de adivinarlo."
+          : "These creator videos show the real ant-colony building loop — beyond the official description. Embed is yt-dlp-verified and gameplay text is written against the video, not guessed from titles."}
+        embedId="gjxGgBoI_Ok"
+      />
       <AdsterraArticleTop />
 
       <section className="mt-10">
@@ -121,6 +130,24 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
             </li>
           ))}
         </ol>
+      </section>
+
+      {/* Colony growth stages — community-level entity table (no invented numbers) */}
+      <section className="mt-10">
+        <DataTable
+          eyebrow={isEs ? "Crecimiento" : "Growth"}
+          title={isEs ? "Etapas de la colonia" : "Colony growth stages"}
+          description={isEs
+            ? "El ritmo exacto varía por servidor y actualización; estas son etapas racionales basadas en el tipo de juego (Community-reported, no números inventados)."
+            : "The exact pace varies by server and update; these are rational stages based on the game type (Community-reported, not invented numbers)."}
+          columns={[isEs ? "Etapa" : "Stage", isEs ? "Enfoque" : "Focus", isEs ? "Qué hacer" : "What to do"]}
+          rows={[
+            [isEs ? "Nido inicial" : "Starting nest", isEs ? "Sobrevivir" : "Survive", isEs ? "Recolecta comida/madera base, construye tu primer almacén para producción continua." : "Gather base food/wood, build a first storage for continuous production."],
+            [isEs ? "Expansión" : "Expansion", isEs ? "Sostener" : "Sustain", isEs ? "Cava túneles hacia zonas con más recursos; cada estructura nueva acelera el ciclo." : "Dig tunnels toward richer zones; each new structure speeds the loop."],
+            [isEs ? "Producción" : "Production", isEs ? "Escalar" : "Scale", isEs ? "Mejora producción antes que novedades: es donde está el crecimiento compuesto." : "Upgrade production before novelty: that's where compound growth lives."],
+            [isEs ? "Colonia próspera" : "Thriving colony", isEs ? "Sostener el ritmo" : "Keep the pace", isEs ? "Reinvierte en mejoras y expande hacia contenidos de fase tardía conforme lleguen." : "Reinvest in upgrades and expand into late-game content as it arrives."]
+          ]}
+        />
       </section>
 
       <section className="mt-10">

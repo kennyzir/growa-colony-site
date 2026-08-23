@@ -5,6 +5,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { locales } from "@/i18n/locales";
 import { activeCodes, editorialSignals, faqs, guideClusters, heroMetrics, officialLinks, playerJourney, siteConfig, toolCards, videoGuides, wikiCards } from "@/data/site";
 import { editorialSignalsEs, guideClustersEs, heroMetricsEs, officialLinksEs, playerJourneyEs, shortDisclosureEs, videoGuidesEs, valuePropositionEs } from "@/data/home-es";
+import { VideoGuide } from "@/components/ui/EvomonBlocks";
 import { VideoGameJsonLd, FaqJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { SectionHeader, TrustNote } from "@/components/ui/content";
 import { BrandHero } from "@/components/home/BrandHero";
@@ -78,6 +79,18 @@ export default async function LocaleHomePage({ params }: { params: Promise<{ loc
         </div>
       </section>
       <AdsterraArticleTop />
+
+      {/* Creator evidence — real colony gameplay (yt-content-miner, yt-dlp-verified) */}
+      <section className="mx-auto max-w-7xl px-4 pt-8">
+        <VideoGuide
+          eyebrow={isEs ? "Creadores" : "Creators"}
+          title={isEs ? "Así se juega de verdad" : "Watch real colony gameplay"}
+          description={isEs
+            ? "Los videos de los creadores muestran el bucle real de construir una colonia de hormigas, más allá de la descripción oficial. Todos los embeds están verificados con yt-dlp."
+            : "Creator videos show the real ant-colony building loop beyond the official description. All embeds are yt-dlp-verified."}
+          embedId="gjxGgBoI_Ok"
+        />
+      </section>
 
       {/* Query Router: what are you here to do */}
       <section className="mx-auto max-w-7xl px-4 py-12">
