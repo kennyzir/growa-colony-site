@@ -7,6 +7,7 @@ import { monthLabel, siteConfig } from "@/data/site";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 import { VerificationBox } from "@/components/ui/VerificationBox";
+import { gameGenre, gameCreator, gameVisits, gamePlaying, gameCreatedIso, gameUpdatedIso, colonySystems } from "@/data/game-db";
 import { AdsterraArticleTop, AdsterraArticleMid } from "@/components/ads";
 
 export function generateStaticParams() {
@@ -42,26 +43,33 @@ export default async function ReleaseDatePage({ params }: { params: Promise<{ lo
     boxEyebrow: isEs ? "Datos oficiales" : "Official data",
     boxTitle: isEs ? "Fecha, género y popularidad" : "Date, genre, and popularity",
     boxItems: isEs ? [
-      ["Fecha de creación", "31 de julio de 2026 (según la API de Roblox)."],
-      ["Género", "Colony Sim / construcción — crecimiento y gestión de colonia."],
-      ["Popularidad", "~290.000 visitas acumuladas, ~1.100 jugadores ahora (2026-08-23)."],
+      ["Fecha de creación", `31 de julio de 2026 (${gameCreatedIso}, API de Roblox).`],
+      ["Género oficial", `${gameGenre} (según la API de Roblox, genre_l2).`],
+      ["Creador", gameCreator],
+      ["Popularidad", `~${(gameVisits/1000).toFixed(0)}K visitas, ~${gamePlaying} jugando (${gameUpdatedIso}).`],
       ["Plataforma", "Roblox (juego dentro de la plataforma)."]
     ] : [
-      ["Created date", "31 July 2026 (per the Roblox API)."],
-      ["Genre", "Colony Sim / building — colony growth and management."],
-      ["Popularity", "~290K accumulated visits, ~1.1K playing now (2026-08-23)."],
+      ["Created date", `31 July 2026 (${gameCreatedIso}, Roblox API).`],
+      ["Official genre", `${gameGenre} (games API, genre_l2).`],
+      ["Creator", gameCreator],
+      ["Popularity", `~${(gameVisits/1000).toFixed(0)}K visits, ~${gamePlaying} playing (${gameUpdatedIso}).`],
       ["Platform", "Roblox (a game inside the platform)."]
     ],
     whatEyebrow: isEs ? "Qué es" : "What it is",
     whatT: isEs ? "¿Qué tipo de juego es?" : "What kind of game is it?",
     whatB: isEs
-      ? "Grow A Colony es un juego de construcción de colonia en Roblox: juegas como una colonia de insectos (una referencia a los termes/avispas) y creces desde un pequeño nido hasta una base próspera. Recolectas recursos, cavas túneles, construyes estructuras y desbloqueas mejoras que aceleran tu producción. Es un juego de gestión y crecimiento incremental — no un shooter ni un juego de combate PvP en primer lugar."
-      : "Grow A Colony is a Roblox colony-building game: you play as an insect colony (a termite/wasp reference) and grow from a small nest into a thriving base. You gather resources, dig tunnels, build structures, and unlock upgrades that speed up your production. It is an incremental management-and-growth game — not a shooter nor a PvP-combat-first game.",
+      ? `Grow A Colony es un ${gameGenre} de Roblox: juegas como la Reina y gobiernas una colonia de IA. La descripción oficial de ${gameCreator} lo deja claro: "¿Quieres ser la reina y gobernar tu propia colonia de IA? Consigue Obreras para la comida y Súper + Zánganos para luchar." Así que el juego es gestión de colonia + combate de castas, no un shooter ni un juego de construcción de túneles en primer lugar.`
+      : `Grow A Colony is a ${gameGenre} on Roblox: you play as the Queen and rule an AI colony. The official description from ${gameCreator} says it plainly: "Ever wanted to be the queen and rule over your own AI colony? Get Workers for food, and Majors & Drones for fighting." So the game is colony management + caste combat, not a shooter and not primarily a tunnel-building sim.`,
+    roleEyebrow: isEs ? "Referencia del juego" : "Release reference",
+    roleT: isEs ? "Qué confirma la fecha" : "What the date confirms",
+    roleB: isEs
+      ? `La fecha de creación (31 julio 2026) es el ancla de la API oficial. Como es un juego muy nuevo, esta fecha responde a "cuándo salió Grow A Colony". El juego ya pasó de ~${(gameVisits/1000).toFixed(0)}K visitas y ~${gamePlaying} jugando — un arranque rápido para un ${gameGenre} nuevo. Como referencia, la descripción oficial lista así el sistema de colonia: ${colonySystems.map(s=>s.name).join(", ")}. Todo esto puede cambiar con cada actualización, así que esta wiki se mantiene al día.`
+      : `The created date (31 July 2026) is the official API anchor. Because this is a very new game, that date answers "when did Grow A Colony come out." It has already climbed to ~${(gameVisits/1000).toFixed(0)}K visits and ~${gamePlaying} playing — a fast start for a new ${gameGenre}. For reference, the official description frames the colony system as: ${colonySystems.map(s=>s.name).join(", ")}. All of this can shift with each update, so this wiki stays current.`,
     ageEyebrow: isEs ? "Historia" : "History",
     ageT: isEs ? "Un juego nuevo y en crecimiento" : "A new, growing game",
     ageB: isEs
-      ? "Lanzado el 31 de julio de 2026, Grow A Colony es un juego muy reciente en Roblox. Ya acumula ~290.000 visitas en sus primeras semanas, lo que indica un arranque rápido en el nicho de construcción de colonias. Al ser un juego joven, está cambiando rápido: cada actualización puede ajustar mecánicas, y esta wiki se actualiza conforme se confirman cambios."
-      : "Released 31 July 2026, Grow A Colony is a very recent Roblox game. It has already accumulated ~290K visits in its first weeks, a fast start in the colony-building niche. As a young game it is changing fast: each update may adjust mechanics, and this wiki updates as changes are confirmed.",
+      ? `Lanzado el ${gameCreatedIso}, Grow A Colony es un juego muy reciente en Roblox. Ya acumula ~${(gameVisits/1000).toFixed(0)}K visitas en sus primeras semanas, un arranque rápido para un ${gameGenre}. Al ser un juego joven, cambia rápido: cada actualización puede ajustar las castas y la economía, y esta wiki se actualiza conforme se confirman cambios.`
+      : `Released ${gameCreatedIso}, Grow A Colony is a very recent Roblox game. It has already climbed to ~${(gameVisits/1000).toFixed(0)}K visits in its first weeks, a fast start for a ${gameGenre}. As a young game it changes fast: each update may adjust the castes and economy, and this wiki updates as changes are confirmed.`,
     relatedEyebrow: isEs ? "Contexto" : "Context",
     relatedT: isEs ? "¿A qué se parece?" : "What is it similar to?",
     relatedB: isEs
@@ -103,6 +111,10 @@ export default async function ReleaseDatePage({ params }: { params: Promise<{ lo
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="mt-10">
+        <SectionHeader eyebrow={T.roleEyebrow} title={T.roleT} copy={T.roleB} />
       </section>
 
       <AdsterraArticleMid />

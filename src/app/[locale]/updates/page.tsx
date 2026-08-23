@@ -7,6 +7,8 @@ import { checkedDate, monthLabel, siteConfig } from "@/data/site";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader, TrustNote } from "@/components/ui/content";
 import { PlayQuickRules, VideoGuide } from "@/components/ui/EvomonBlocks";
+import { VerificationBox } from "@/components/ui/VerificationBox";
+import { gameGenre, gameCreator, gameUpdatedIso, gameVisits, gamePlaying, gameCreatedIso, colonySystems } from "@/data/game-db";
 import { AdsterraArticleTop, AdsterraArticleMid } from "@/components/ads";
 
 export function generateStaticParams() {
@@ -59,15 +61,17 @@ export default async function UpdatesPage({ params }: { params: Promise<{ locale
     statusEyebrow: isEs ? "Estado confirmado" : "Confirmed status",
     statusT: isEs ? "Última comprobación y qué está confirmado" : "Last check and what's confirmed",
     statusItems: isEs ? [
-      ["Última comprobación", "Agosto de 2026. La página oficial del juego se revisó y está al día según la API de Roblox (fecha de actualización 2026-08-20)."],
-      ["Identidad del juego", "Grow A Colony, lugar 103154273080028, creado el 31 de julio de 2026. Confirmado por la API oficial."],
-      ["Género", "Colony Sim — construcción de colonia, confirmado por la página oficial."],
-      ["Editor de personaje", "Presente y funcional (base, tono de piel, ojos, cara, pelo, accesorios). Confirmado por tutoriales fechados."],
+      [`Última comprobación`, `Agosto de 2026. La página oficial se revisó y está al día según la API de Roblox (actualizado ${gameUpdatedIso}).`],
+      [`Identidad del juego`, `Grow A Colony, lugar 103154273080028, creado el ${gameCreatedIso ?? "31 de julio de 2026"}. Confirmado por la API oficial.`],
+      [`Género oficial`, `${gameGenre} (genre_l2, API de Roblox).`],
+      [`Sistema de colonia`, `Juegas como la Reina y gobiernas una colonia de IA: ${colonySystems.map(s=>s.name).join(", ")}.`],
+      [`Popularidad`, `~${(gameVisits/1000).toFixed(0)}K visitas, ~${gamePlaying} jugando (${gameUpdatedIso}).`],
     ] : [
-      ["Last check", "August 2026. The official game page was reviewed and is current per the Roblox API (last-updated 2026-08-20)."],
-      ["Game identity", "Grow A Colony, place 103154273080028, created 31 July 2026. Confirmed by the official API."],
-      ["Genre", "Colony Sim — colony building, confirmed by the official page."],
-      ["Game status", "Active and playable on Roblox. Gameplay reflects the current build (updated 23 August 2026)."],
+      [`Last check`, `August 2026. The official page was reviewed and is current per the Roblox API (last-updated ${gameUpdatedIso}).`],
+      [`Game identity`, `Grow A Colony, place 103154273080028, created ${gameCreatedIso ?? "31 July 2026"}. Confirmed by the official API.`],
+      [`Official genre`, `${gameGenre} (genre_l2, Roblox API).`],
+      [`Colony system`, `You play as the Queen and rule an AI colony: ${colonySystems.map(s=>s.name).join(", ")}.`],
+      [`Popularity`, `~${(gameVisits/1000).toFixed(0)}K visits, ~${gamePlaying} playing (${gameUpdatedIso}).`],
     ],
     honestEyebrow: isEs ? "Honestidad" : "Honesty",
     honestT: isEs ? "Lo que no publicamos" : "What we don't publish",
@@ -97,6 +101,7 @@ export default async function UpdatesPage({ params }: { params: Promise<{ locale
       <FaqJsonLd items={[{ q: T.faq1q, a: T.faq1a }, { q: T.faq2q, a: T.faq2a }, { q: T.faq3q, a: T.faq3a }]} />
       <Breadcrumbs items={[{ label: T.crumb, href: `${prefix}/updates` }]} />
       <PageIntro eyebrow="Grow A Colony · Updates" title={T.introTitle} description={T.introDesc} />
+      <VerificationBox />
       <VideoGuide
         eyebrow={isEs ? "Creadores" : "Creators"}
         title={isEs ? "Video de la comunidad" : "Creator gameplay evidence"}

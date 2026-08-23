@@ -6,6 +6,7 @@ import { locales } from "@/i18n/locales";
 import { activeCodes, checkedDate, expiredCodes, faqs, monthLabel, siteConfig } from "@/data/site";
 import { BreadcrumbJsonLd, ClaimReviewJsonLd, FaqJsonLd, HowToJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader, TrustNote } from "@/components/ui/content";
+import { VerificationBox } from "@/components/ui/VerificationBox";
 import { AdsterraArticleMid, AdsterraArticleTop } from "@/components/ads";
 
 export function generateStaticParams() {
@@ -122,6 +123,7 @@ export default async function CodesPage({ params }: { params: Promise<{ locale: 
       <ClaimReviewJsonLd claim={`${siteConfig.gameName} rewards are redeemed in-game; codes are published by the developers when available.`} itemReviewed={{ name: siteConfig.gameName, type: "VideoGame" }} author={{ name: `${siteConfig.gameName} Fan Wiki` }} datePublished={checkedDate} rating={{ ratingValue: 4, bestRating: 5, worstRating: 1, alternateName: "Evidence" }} />
       <Breadcrumbs items={[{ label: isEs ? "Códigos" : "Codes", href: `${prefix}/codes` }]} />
       <PageIntro eyebrow={T.eyebrow} title={T.introTitle} description={T.introDesc} />
+      <VerificationBox />
       <AdsterraArticleTop />
 
       <section className="mt-10">

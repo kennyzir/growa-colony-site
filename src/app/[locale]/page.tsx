@@ -6,6 +6,8 @@ import { locales } from "@/i18n/locales";
 import { activeCodes, editorialSignals, faqs, guideClusters, heroMetrics, officialLinks, playerJourney, siteConfig, toolCards, videoGuides, wikiCards } from "@/data/site";
 import { editorialSignalsEs, guideClustersEs, heroMetricsEs, officialLinksEs, playerJourneyEs, shortDisclosureEs, videoGuidesEs, valuePropositionEs } from "@/data/home-es";
 import { VideoGuide } from "@/components/ui/EvomonBlocks";
+import { VerificationBox } from "@/components/ui/VerificationBox";
+import { gameGenre, gameCreator, gameUpdatedIso } from "@/data/game-db";
 import { VideoGameJsonLd, FaqJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { SectionHeader, TrustNote } from "@/components/ui/content";
 import { BrandHero } from "@/components/home/BrandHero";
@@ -65,6 +67,7 @@ export default async function LocaleHomePage({ params }: { params: Promise<{ loc
       <WebSiteJsonLd />
       <VideoGameJsonLd />
       <FaqJsonLd items={faqs.home} />
+      <VerificationBox />
       <BrandHero isEs={isEs} valueProp={valueProp} shortDisc={shortDisc} />
 
       <section className="border-y border-white/10 bg-black/25">

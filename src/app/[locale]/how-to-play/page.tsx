@@ -9,6 +9,7 @@ import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 import { VerificationBox } from "@/components/ui/VerificationBox";
 import { PlayQuickRules, VideoGuide, DataTable } from "@/components/ui/EvomonBlocks";
 import { PerPageLinks } from "@/components/ui/PerPageLinks";
+import { gameEntities, colonySystems, gameGenre, gameCreator } from "@/data/game-db";
 import { AdsterraArticleTop, AdsterraArticleMid } from "@/components/ads";
 
 export function generateStaticParams() {
@@ -39,8 +40,8 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
     crumb: isEs ? "Cómo jugar" : "How to Play",
     introTitle: isEs ? "Cómo jugar Grow A Colony" : "How to play Grow A Colony",
     introDesc: isEs
-      ? "Grow A Colony es un juego de construcción de colonia en Roblox: juegas como una colonia de insectos y creces desde un pequeño nido hasta una base próspera. Recolectas recursos (madera, hojas, comida), cavas túneles, construyes estructuras y desbloqueas mejoras. Esta guía de inicio cubre el primer día: el bucle de juego, qué construir primero y cómo crecer rápido."
-      : "Grow A Colony is a Roblox colony-building game: you play as an insect colony and grow from a small nest into a thriving base. You gather resources (wood, leaves, food), dig tunnels, build structures, and unlock upgrades. This getting-started guide covers your first day: the core loop, what to build first, and how to grow fast.",
+      ? `Grow A Colony es un simulador de animales en Roblox: juegas como la Reina de una colonia de IA y la gobiernas. Según la descripción oficial (${gameCreator}), se necesitan Obreras para la comida y Súper + Zánganos para luchar. Esta guía de inicio cubre el primer día: entender tu rol de Reina, hacer crecer la fuerza de Obreras y levantar un escuadrón de combate.`
+      : `Grow A Colony is a Roblox animal sim: you play as the Queen of an AI colony and rule it. Per the official description (${gameCreator}), you get Workers for food and Majors + Drones for fighting. This getting-started guide covers your first day: understanding your Queen role, growing your Worker force, and raising a combat squad.`,
     section1Eyebrow: isEs ? "Lo esencial" : "The essentials",
     section1T: isEs ? "Qué es Grow A Colony" : "What Grow A Colony is",
     section1B: isEs ? [
@@ -88,8 +89,8 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
   };
 
   const qrRules = isEs
-    ? ["Recolecta madera y hojas al empezar.", "Construye almacenamiento para producción continua.", "Expande túneles hacia recursos de mayor valor.", "Mejora producción antes que novedades."]
-    : ["Gather wood and leaves at the start.", "Build storage for continuous production.", "Expand tunnels toward higher-value resources.", "Upgrade production before novelty."];
+    ? [`Juegas como la Reina — gobierna la colonia de IA.`, `Consigue Obreras para la comida: alimenta a la colonia.`, `Levanta Súper + Zánganos para luchar.`, `Equilibra economía (Obreras) y defensa (combate).`]
+    : [`You play as the Queen — rule the AI colony.`, `Get Workers for food: feed the colony.`, `Raise Majors + Drones for fighting.`, `Balance economy (Workers) and defense (combat).`];
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-10">
@@ -132,21 +133,16 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
         </ol>
       </section>
 
-      {/* Colony growth stages — community-level entity table (no invented numbers) */}
+      {/* Colony roster — verified entities from the official description (queen + Workers/Majors/Drones) */}
       <section className="mt-10">
         <DataTable
-          eyebrow={isEs ? "Crecimiento" : "Growth"}
-          title={isEs ? "Etapas de la colonia" : "Colony growth stages"}
+          eyebrow={isEs ? "Colonia" : "Colony"}
+          title={isEs ? "Quiénes hay en tu colonia" : "Your colony's castes"}
           description={isEs
-            ? "El ritmo exacto varía por servidor y actualización; estas son etapas racionales basadas en el tipo de juego (Community-reported, no números inventados)."
-            : "The exact pace varies by server and update; these are rational stages based on the game type (Community-reported, not invented numbers)."}
-          columns={[isEs ? "Etapa" : "Stage", isEs ? "Enfoque" : "Focus", isEs ? "Qué hacer" : "What to do"]}
-          rows={[
-            [isEs ? "Nido inicial" : "Starting nest", isEs ? "Sobrevivir" : "Survive", isEs ? "Recolecta comida/madera base, construye tu primer almacén para producción continua." : "Gather base food/wood, build a first storage for continuous production."],
-            [isEs ? "Expansión" : "Expansion", isEs ? "Sostener" : "Sustain", isEs ? "Cava túneles hacia zonas con más recursos; cada estructura nueva acelera el ciclo." : "Dig tunnels toward richer zones; each new structure speeds the loop."],
-            [isEs ? "Producción" : "Production", isEs ? "Escalar" : "Scale", isEs ? "Mejora producción antes que novedades: es donde está el crecimiento compuesto." : "Upgrade production before novelty: that's where compound growth lives."],
-            [isEs ? "Colonia próspera" : "Thriving colony", isEs ? "Sostener el ritmo" : "Keep the pace", isEs ? "Reinvierte en mejoras y expande hacia contenidos de fase tardía conforme lleguen." : "Reinvest in upgrades and expand into late-game content as it arrives."]
-          ]}
+            ? `Estas unidades provienen de la descripción oficial de Roblox (${gameCreator}, ${gameGenre}): la Reina, las Obreras (comida) y las Súper/Zánganos (lucha). Sin inventar números.`
+            : `These units come from the official Roblox description (${gameCreator}, ${gameGenre}): the Queen, Workers (food), and Majors & Drones (fighting). No invented numbers.`}
+          columns={[isEs ? "Unidad" : "Unit", isEs ? "Rol" : "Role", isEs ? "Misión en la colonia" : "Colony job"]}
+          rows={gameEntities.map((e) => [e.name, e.role, e.colonyJob])}
         />
       </section>
 
