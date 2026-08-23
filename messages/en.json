@@ -1,0 +1,28 @@
+{
+  "shared": {
+    "source_checked": "Source-checked {date}"
+  },
+  "homePage": {
+    "route_eyebrow": "What are you here to do?",
+    "route_title": "Grow A Colony: start, grow, and track your colony",
+    "route_copy": "Three jobs — redeem codes, learn the colony loop, and follow updates.",
+    "qa_eyebrow": "Quick answers",
+    "qa_title": "Grow A Colony FAQs for new players",
+    "qa_copy": "The questions new players ask most, answered in one line each.",
+    "create_eyebrow": "Play",
+    "create_title": "How to play",
+    "create_copy": "Gather resources, build structures, and expand tunnels to grow your colony.",
+    "style_eyebrow": "Grow",
+    "style_title": "Grow your colony",
+    "style_copy": "Upgrade production and expand toward higher-value resources for steady growth.",
+    "roleplay_eyebrow": "Track",
+    "roleplay_title": "Codes & updates",
+    "roleplay_copy": "Check verified reward codes and what changed in the latest update.",
+    "src_eyebrow": "Source check",
+    "src_title": "Grow A Colony sources & how we verify",
+    "src_copy": "Codes are verified against official sources; gameplay reflects the current build.",
+    "video_eyebrow": "Video & creator references",
+    "video_title": "See Grow A Colony in action",
+    "video_copy": "A first-session walkthrough and the official code-finding video."
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "shared": {
+    "source_checked": "Verificado con fuentes {date}"
+  },
+  "homePage": {
+    "route_eyebrow": "¿Qué has venido a hacer?",
+    "route_title": "Grow A Colony: empieza, crece y sigue tu colonia",
+    "route_copy": "Tres tareas — canjear códigos, aprender el bucle y seguir las novedades.",
+    "qa_eyebrow": "Respuestas rápidas",
+    "qa_title": "Preguntas frecuentes de Grow A Colony",
+    "qa_copy": "Las preguntas que más hacen los nuevos jugadores, respondidas en una línea.",
+    "create_eyebrow": "Jugar",
+    "create_title": "Cómo jugar",
+    "create_copy": "Recolecta recursos, construye estructuras y expande túneles para hacer crecer tu colonia.",
+    "style_eyebrow": "Crecer",
+    "style_title": "Haz crecer tu colonia",
+    "style_copy": "Mejora la producción y expande hacia recursos de mayor valor para un crecimiento constante.",
+    "roleplay_eyebrow": "Seguir",
+    "roleplay_title": "Códigos y novedades",
+    "roleplay_copy": "Revisa los códigos verificados y qué cambió en la última actualización.",
+    "src_eyebrow": "Verificación de fuentes",
+    "src_title": "Fuentes de Grow A Colony y cómo verificamos",
+    "src_copy": "Los códigos se verifican contra fuentes oficiales; el gameplay refleja la versión actual.",
+    "video_eyebrow": "Referencias de video y creadores",
+    "video_title": "Mira Grow A Colony en acción",
+    "video_copy": "Un recorrido de primera sesión y el video oficial para encontrar códigos."
+  }
+}
