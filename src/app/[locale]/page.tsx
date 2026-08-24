@@ -88,15 +88,29 @@ export default async function LocaleHomePage({ params }: { params: Promise<{ loc
         </div>
       </section>
 
-      {/* ★ Deep differentiator — the food-before-fighters insight (the page's unique value) */}
+      {/* ★ Deep differentiator — short conclusion + link only. §13 says
+          homepage vs inner-page similarity must drop below 0.35; previous
+          copy here duplicated /guides/ ("colony-economy-strategy" 0.41 ⚠).
+          The full "food before war" reasoning lives at /guides/. */}
       <section className="bg-white/[0.025]" data-home-block-id="deep-differentiator">
         <div className="mx-auto max-w-7xl px-4 py-12">
-          <SectionHeader eyebrow={isEs ? "La decisión clave" : "The one decision"} title={isEs ? "Comida antes que guerra" : "Food before war"} copy={job} />
-          <p className="mt-4 rounded-lg border border-white/10 bg-black/20 p-5 text-sm leading-7 text-white/75">
+          <SectionHeader
+            eyebrow={isEs ? "La decisión clave" : "The one decision"}
+            title={isEs ? "Comida antes que guerra" : "Food before war"}
+          />
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-white/75">
             {isEs
-              ? "La mayoría de guías repiten la descripción oficial. Lo que importa de verdad es el orden: una colonia que solo cría soldados se muere de hambre. Los trabajadores son la base, los soldados la punta."
-              : "Most guides repeat the official description. What actually matters is the order: a colony that only breeds fighters starves. Workers are the base, fighters are the tip."}
+              ? "Los Workers sostienen la colonia. Los Majors/Drones la defienden. Si crías soldados antes de tener economía, la colonia se muere de hambre."
+              : "Workers sustain the colony. Majors/Drones defend it. If you breed fighters before the food economy is running, the colony starves."}
           </p>
+          <div className="mt-5">
+            <Link
+              href={isEs ? "/es/guides" : "/en/guides"}
+              className="inline-flex items-center gap-2 rounded-full border border-[color:var(--accent)]/30 bg-[color:var(--accent)]/8 px-4 py-2 text-sm font-semibold text-[color:var(--accent)] hover:bg-[color:var(--accent)]/15"
+            >
+              {isEs ? "Ver la guía completa de economía de colonia →" : "See the full colony-economy guide →"}
+            </Link>
+          </div>
         </div>
       </section>
 

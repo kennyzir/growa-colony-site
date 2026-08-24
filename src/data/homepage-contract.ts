@@ -68,10 +68,10 @@ export const homepageContract = {
   },
 
   firstHourRoute: [
-    { step: 1, title: "Grow Workers first for food", href: "/en/how-to-play", why: "Workers gather food — the colony's engine. Without food you can't sustain anything else." },
-    { step: 2, title: "Feed the colony before you fight", href: "/en/how-to-play", why: "A starving colony can't support Majors or Drones; economy comes before military." },
-    { step: 3, title: "Add Majors for defense", href: "/guides", why: "Once food is stable, Majors are your heavy defense against threats and territory." },
-    { step: 4, title: "Add Drones as your second fighting caste", href: "/guides", why: "Drones round out the combat force; both castes are the colony's muscle." },
+    { step: 1, title: "Grow Workers first for food", href: "/en/how-to-play", why: "Base income — colony's food economy." },
+    { step: 2, title: "Feed the colony before you fight", href: "/en/how-to-play", why: "Order matters — see /guides/ for the full why." },
+    { step: 3, title: "Add Majors for defense", href: "/guides", why: "Defence → full caste guide at /guides/." },
+    { step: 4, title: "Add Drones as your second fighting caste", href: "/guides", why: "Combat force → full caste guide at /guides/." },
   ],
 
   hubPlan: [
