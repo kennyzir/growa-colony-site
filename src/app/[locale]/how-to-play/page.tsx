@@ -41,7 +41,7 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
     crumb: isEs ? "Cómo jugar" : "How to Play",
     introTitle: isEs ? "Cómo jugar Grow A Colony" : "How to play Grow A Colony",
     introDesc: isEs
-      ? `Grow A Colony es un simulador de animales en Roblox: juegas como la Reina de una colonia de IA y la gobiernas. Según la descripción oficial (${gameCreator}), se necesitan Obreras para la comida y Súper + Zánganos para luchar. Esta guía de inicio cubre el primer día: entender tu rol de Reina, hacer crecer la fuerza de Obreras y levantar un escuadrón de combate.`
+      ? `Grow A Colony es un simulador de animales en Roblox: juegas como la Reina de una colonia de IA y la gobiernas. Según la descripción oficial (${gameCreator}), se necesitan Workers para la comida y Majors + Drones para luchar. Esta guía de inicio cubre el primer día: entender tu rol de Reina, hacer crecer la fuerza de Workers y levantar un escuadrón de combate.`
       : `Grow A Colony is a Roblox animal sim: you play as the Queen of an AI colony and rule it. Per the official description (${gameCreator}), you get Workers for food and Majors + Drones for fighting. This getting-started guide covers your first day: understanding your Queen role, growing your Worker force, and raising a combat squad.`,
     section1Eyebrow: isEs ? "Lo esencial" : "The essentials",
     section1T: isEs ? "Qué es Grow A Colony" : "What Grow A Colony is",
@@ -62,9 +62,9 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
     section2Steps: isEs ? [
       ["Entra al juego", "Entra al mundo de Grow A Colony desde la página oficial de Roblox. Unirse a un servidor con pocos jugadores suele ser más tranquilo."],
       ["Entiende tu rol de Reina", "No eres una unidad: gobiernas una colonia de IA. Tu trabajo es decidir qué caste crecer, no luchar tú misma."],
-      ["Consigue Obreras para la comida", "La descripción oficial es clara: las Obreras recolectan comida para alimentar la colonia. Es la economía del juego."],
-      ["Levanta Súper y Zánganos para luchar", "Cuando la colonia se sostenga, invierte en el caste de combate: Súper y Zánganos son tu fuerza de combate."],
-      ["Equilibra economía y defensa", "Demasiadas Obreras = hambre de comida sin defensa; demasiado combate = sin economía. El equilibrio es el juego."],
+      ["Consigue Workers para la comida", "La descripción oficial es clara: los Workers recolectan comida para alimentar la colonia. Es la economía del juego."],
+      ["Levanta Majors y Drones para luchar", "Cuando la colonia se sostenga, invierte en el caste de combate: Majors y Drones son tu fuerza de combate."],
+      ["Equilibra economía y defensa", "Demasiados Workers = hambre de comida sin defensa; demasiado combate = sin economía. El equilibrio es el juego."],
     ] : [
       ["Join the game", "Enter the Grow A Colony world from the official Roblox page. Joining a lower-player-count server is usually calmer."],
       ["Know your Queen role", "You aren't a unit: you rule an AI colony. Your job is deciding which caste to grow, not fighting alone."],
@@ -75,20 +75,20 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
     econEyebrow: isEs ? "Economía y combate" : "Economy & combat",
     econT: isEs ? "Cómo funcionan economía y defensa" : "How the economy and defense work",
     econB: isEs
-      ? "El núcleo de Grow A Colony, según la descripción oficial, es gestionar la colonia de IA en dos frentes: la economía (Obreras → comida) y el combate (Súper + Zánganos). No inventamos números: la tabla resume el concepto verificado, no cifras exactas."
+      ? "El núcleo de Grow A Colony, según la descripción oficial, es gestionar la colonia de IA en dos frentes: la economía (Workers → comida) y el combate (Majors + Drones). No inventamos números: la tabla resume el concepto verificado, no cifras exactas."
       : "The core of Grow A Colony, per the official description, is managing the AI colony on two fronts: the economy (Workers → food) and combat (Majors + Drones). We don't invent numbers: the table summarizes the verified concept, not exact figures.",
     econRows: isEs ? [
-      ["Obreras = economía", "Gestionan la comida y el crecimiento de la colonia. Más Obreras = colonia que se sostiene."],
-      ["Súper + Zánganos = combate", "El caste ofensivo. La descripción oficial los lista juntos para luchar."],
-      ["La Reina = decisión", "Tú decides el balance entre Obreras y combatientes. Ése es el bucle de decisión."],
+      ["Workers = economía", "Gestionan la comida y el crecimiento de la colonia. Más Workers = colonia que se sostiene."],
+      ["Majors + Drones = combate", "El caste ofensivo. La descripción oficial los lista juntos para luchar."],
+      ["La Reina = decisión", "Tú decides el balance entre Workers y combatientes. Ése es el bucle de decisión."],
     ] : [
       ["Workers = economy", "Handle food and colony growth. More Workers = a colony that sustains itself."],
       ["Majors + Drones = combat", "The offensive caste. The official description lists them together for fighting."],
       ["The Queen = decision", "You choose the balance between Workers and fighters. That's the decision loop."],
     ],
     econNote: isEs
-      ? "Honestidad: no hay una fuente oficial con fecha que publique cifras exactas (costos de caste, producción por Obrera, poder de combate). Cuando un creador o la actualización oficial los confirme, esta sección se actualizará con números verificados. Hasta entonces, aquí no hay números inventados."
-      : "Honesty: there is no dated official source publishing exact figures (caste costs, per-Worker production, combat power). When a developer or the official update confirms them, this section will be updated with verified numbers. Until then, no numbers are invented here.",
+      ? "No hay una fuente oficial con fecha que publique cifras exactas (costos de caste, producción por Worker, poder de combate). Cuando un creador o la actualización oficial los confirme, esta sección se actualizará con números verificados. Hasta entonces, no inventamos números."
+      : "There is no dated official source publishing exact figures (caste costs, per-Worker production, combat power). When a developer or the official update confirms them, this section will be updated with verified numbers. Until then, we don't invent numbers.",
     pitfallsEyebrow: isEs ? "Errores comunes" : "Common mistakes",
     pitfallsTitle: isEs ? "Qué evitar" : "What to avoid",
     pit1t: isEs ? "Gastar todo en novedades" : "Spending everything on novelty",
@@ -107,7 +107,7 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
   };
 
   const qrRules = isEs
-    ? [`Juegas como la Reina — gobierna la colonia de IA.`, `Consigue Obreras para la comida: alimenta a la colonia.`, `Levanta Súper + Zánganos para luchar.`, `Equilibra economía (Obreras) y defensa (combate).`]
+    ? [`Juegas como la Reina — gobierna la colonia de IA.`, `Consigue Workers para la comida: alimenta a la colonia.`, `Levanta Majors + Drones para luchar.`, `Equilibra economía (Workers) y defensa (combate).`]
     : [`You play as the Queen — rule the AI colony.`, `Get Workers for food: feed the colony.`, `Raise Majors + Drones for fighting.`, `Balance economy (Workers) and defense (combat).`];
 
   return (
@@ -156,7 +156,7 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
           eyebrow={isEs ? "Colonia" : "Colony"}
           title={isEs ? "Quiénes hay en tu colonia" : "Your colony's castes"}
           description={isEs
-            ? `Estas unidades provienen de la descripción oficial de Roblox (${gameCreator}, ${gameGenre}): la Reina, las Obreras (comida) y las Súper/Zánganos (lucha). Sin inventar números.`
+            ? `Estas unidades provienen de la descripción oficial de Roblox (${gameCreator}, ${gameGenre}): la Reina, los Workers (comida) y los Majors/Drones (lucha). Sin inventar números.`
             : `These units come from the official Roblox description (${gameCreator}, ${gameGenre}): the Queen, Workers (food), and Majors & Drones (fighting). No invented numbers.`}
           columns={[isEs ? "Unidad" : "Unit", isEs ? "Rol" : "Role", isEs ? "Misión en la colonia" : "Colony job"]}
           rows={gameEntities.map((e) => [e.name, e.role, e.colonyJob])}

@@ -59,7 +59,7 @@ export default async function ReleaseDatePage({ params }: { params: Promise<{ lo
     whatEyebrow: isEs ? "Qué es" : "What it is",
     whatT: isEs ? "¿Qué tipo de juego es?" : "What kind of game is it?",
     whatB: isEs
-      ? `Grow A Colony es un ${gameGenre} de Roblox: juegas como la Reina y gobiernas una colonia de IA. La descripción oficial de ${gameCreator} lo deja claro: "¿Quieres ser la reina y gobernar tu propia colonia de IA? Consigue Obreras para la comida y Súper + Zánganos para luchar." Así que el juego es gestión de colonia + combate de castas, no un shooter ni un juego de construcción de túneles en primer lugar.`
+      ? `Grow A Colony es un ${gameGenre} de Roblox: juegas como la Reina y gobiernas una colonia de IA. La descripción oficial de ${gameCreator} lo deja claro: "¿Quieres ser la reina y gobernar tu propia colonia de IA? Consigue Workers para la comida y Majors + Drones para luchar." Así que el juego es gestión de colonia + combate de castas, no un shooter ni un juego de construcción de túneles en primer lugar.`
       : `Grow A Colony is a ${gameGenre} on Roblox: you play as the Queen and rule an AI colony. The official description from ${gameCreator} says it plainly: "Ever wanted to be the queen and rule over your own AI colony? Get Workers for food, and Majors & Drones for fighting." So the game is colony management + caste combat, not a shooter and not primarily a tunnel-building sim.`,
     roleEyebrow: isEs ? "Referencia del juego" : "Release reference",
     roleT: isEs ? "Qué confirma la fecha" : "What the date confirms",
@@ -82,7 +82,7 @@ export default async function ReleaseDatePage({ params }: { params: Promise<{ lo
     faq2q: isEs ? "¿La fecha de creación significa que no se actualiza?" : "Does the created date mean it does not get updates?",
     faq2a: isEs ? "No. Created es cuándo se lanzó; el juego recibe ajustes con el tiempo (consulta la página de actualizaciones)." : "No. Created is when it launched; the game receives tweaks over time (see the updates page).",
     faq3q: isEs ? "¿Es apto para niños?" : "Is it kid-friendly?",
-    faq3a: isEs ? "Es un juego de gestión de colonia (Reina + Obreras/Súper/Zánganos) en Roblox, una plataforma diseñada para menores. Como cualquier comunidad abierta, la supervisión varía." : "It is a colony-management game (Queen + Workers/Majors/Drones) on Roblox, a platform designed for kids. As with any open community, supervision varies.",
+    faq3a: isEs ? "Es un juego de gestión de colonia (Reina + Workers/Majors/Drones) en Roblox, una plataforma diseñada para menores. Como cualquier comunidad abierta, la supervisión varía." : "It is a colony-management game (Queen + Workers/Majors/Drones) on Roblox, a platform designed for kids. As with any open community, supervision varies.",
     nextEyebrow: isEs ? "Explora" : "Explore",
     nextTitle: isEs ? "Sigue explorando" : "Keep exploring",
     howLink: isEs ? "Cómo jugar" : "How to play",

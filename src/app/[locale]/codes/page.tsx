@@ -111,7 +111,7 @@ export default async function CodesPage({ params }: { params: Promise<{ locale: 
     watchBody: isEs ? "Sigue la página oficial de Roblox y el canal de YouTube del juego; los códigos suelen anunciarse ahí. Cuidado con los sitios de estafa; confía solo en fuentes de primera mano." : "Follow the official Roblox page and the game's YouTube channel; codes are usually announced there. Watch for scam websites; only trust first-party sources.",
     sourcesEyebrow: isEs ? "Fuentes" : "Sources",
     sourcesTitle: isEs ? "Estado de las fuentes" : "Source status",
-    sourcesCopy: isEs ? "Un registro honesto de qué comprobamos y cuándo." : "An honest ledger of what we check and when.",
+    sourcesCopy: isEs ? "Qué comprobamos y cuándo." : "What we check and when.",
     keepEye: isEs ? "Sigue explorando" : "Keep exploring",
     keepTitle: isEs ? "Guías relacionadas para jugadores" : "Related guides for players",
     keepCopy: isEs ? "Los códigos son solo el comienzo. Aprende el bucle de construcción de colonia y sigue el progreso del juego con las guías de abajo." : "Codes are just the start. Learn the colony-building loop and follow the game's progress with the guides below."

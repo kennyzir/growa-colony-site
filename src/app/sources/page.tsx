@@ -5,7 +5,7 @@ import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 
 export const metadata: Metadata = {
   title: "Grow A Colony — Source Status",
-  description: "An honest ledger of what we verified on the Grow A Colony fan wiki, when, and from what source.",
+  description: "What was verified on Grow A Colony, when, and from what source.",
   alternates: { canonical: `${siteConfig.domain}/sources` }
 };
 

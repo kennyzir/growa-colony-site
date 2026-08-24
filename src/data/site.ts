@@ -194,7 +194,7 @@ export const officialLinks: LinkCard[] = [
   {
     title: "Source Status Page",
     href: "/sources",
-    description: "An honest ledger of what we verify and when.",
+    description: "What we verify and when.",
     miniLabel: "Sources"
   }
 ];
