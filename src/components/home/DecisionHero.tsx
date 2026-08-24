@@ -11,9 +11,10 @@ export function DecisionHero({ isEs = false }: { isEs?: boolean }) {
   const lh = (href: string) => (isEs && href.startsWith("/en") ? href.replace("/en", "/es") : href);
   const route = homepageContract.firstHourRoute;
   return (
-    <section className="relative overflow-hidden border-b border-white/10 bg-gradient-to-br from-emerald-950/60 via-black to-black">
+    <section className="relative overflow-hidden border-b border-[color:var(--accent)]/20 bg-gradient-to-br from-[color:#1c1609] via-[color:var(--bg)] to-[color:#0f0c06]">
       {/* subtle caste hint, not a full-bleed cover */}
-      <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[color:var(--accent)]/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[color:var(--accent)]/20 blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 -bottom-24 h-72 w-72 rounded-full bg-[color:var(--accent-2)]/15 blur-3xl" />
       <div className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
         <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/45 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--accent)]">
           {isEs ? "El error de principiante" : "The beginner mistake"}
