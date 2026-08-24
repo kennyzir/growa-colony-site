@@ -9,6 +9,7 @@ import { gameGenre, gameCreator, gameEntities, gameVisits, gamePlaying, gameUpda
 import { VideoGameJsonLd, FaqJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { SectionHeader } from "@/components/ui/content";
 import { DecisionHero } from "@/components/home/DecisionHero";
+import { ColonyStarterDecision } from "@/components/tools/ColonyStarterDecision";
 import { AdsterraArticleTop, AdsterraArticleMid } from "@/components/ads";
 
 export function generateStaticParams() {
@@ -57,6 +58,13 @@ export default async function LocaleHomePage({ params }: { params: Promise<{ loc
 
       <section data-home-block-id="main-engine">
         <DecisionHero isEs={isEs} />
+        {/* ★ THE MAIN ENGINE — a working decision tool, not a sentence.
+            Player answers 3 questions about their own colony state and gets a
+            concrete "do this next". No invented numbers; grounded in the
+            official mechanism (Workers=food, Majors/Drones=fighting). */}
+        <div className="mx-auto -mt-6 max-w-5xl px-4 pb-14">
+          <ColonyStarterDecision isEs={isEs} />
+        </div>
       </section>
 
       {/* Live game data — entity identity + freshness (single source of truth) */}
