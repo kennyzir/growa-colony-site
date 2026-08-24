@@ -8,7 +8,7 @@ import { homepageContract } from "@/data/homepage-contract";
 import { gameGenre, gameCreator, gameEntities, gameVisits, gamePlaying, gameUpdatedIso } from "@/data/game-db";
 import { VideoGameJsonLd, FaqJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { SectionHeader } from "@/components/ui/content";
-import { BrandHero } from "@/components/home/BrandHero";
+import { DecisionHero } from "@/components/home/DecisionHero";
 import { AdsterraArticleTop, AdsterraArticleMid } from "@/components/ads";
 
 export function generateStaticParams() {
@@ -55,14 +55,8 @@ export default async function LocaleHomePage({ params }: { params: Promise<{ loc
       <VideoGameJsonLd />
       <FaqJsonLd items={faqs.home} />
 
-      <section data-home-block-id="hero">
-        <BrandHero
-          isEs={isEs}
-          valueProp={isEs ? "Sé la reina → cría trabajadores para comida → Majors y Drones para pelear" : "Be the queen → grow workers for food → Majors & Drones to fight"}
-          shortDisc={isEs
-            ? `Grow A Colony es un ${gameGenre} de Roblox por ${gameCreator}. Aquí decides el orden de crecimiento de tu colonia y la haces prosperar sin estancarte.`
-            : `Grow A Colony is a Roblox ${gameGenre} by ${gameCreator}. Here you decide your colony's growth order and make it thrive without stalling.`}
-        />
+      <section data-home-block-id="main-engine">
+        <DecisionHero isEs={isEs} />
       </section>
 
       {/* Live game data — entity identity + freshness (single source of truth) */}
@@ -86,22 +80,16 @@ export default async function LocaleHomePage({ params }: { params: Promise<{ loc
         </div>
       </section>
 
-      {/* ★ MAIN ENGINE — the first-hour decision route (the page's reason to exist) */}
-      <section className="mx-auto max-w-7xl px-4 py-12" data-home-block-id="main-engine">
-        <SectionHeader
-          eyebrow={isEs ? "La decisión clave" : "The one decision"}
-          title={isEs ? "Qué criar primero: trabajadores o soldados" : "What to grow first: workers or fighters"}
-          copy={job}
-        />
-        <ol className="mt-6 grid gap-3 text-sm text-white/75">
-          {homepageContract.firstHourRoute.map((s) => (
-            <li key={s.step} className="rounded-lg border border-white/10 bg-black/20 p-4">
-              <strong className="text-white">{s.step}. {s.title}</strong>
-              <p className="mt-1 text-white/65">{s.why}</p>
-              <Link href={localHref(s.href)} className="mt-2 inline-block text-xs font-semibold text-[color:var(--accent)] hover:underline">→ {isEs ? "Leer la guía" : "Read the guide"}</Link>
-            </li>
-          ))}
-        </ol>
+      {/* ★ Deep differentiator — the food-before-fighters insight (the page's unique value) */}
+      <section className="bg-white/[0.025]" data-home-block-id="deep-differentiator">
+        <div className="mx-auto max-w-7xl px-4 py-12">
+          <SectionHeader eyebrow={isEs ? "La decisión clave" : "The one decision"} title={isEs ? "Comida antes que guerra" : "Food before war"} copy={job} />
+          <p className="mt-4 rounded-lg border border-white/10 bg-black/20 p-5 text-sm leading-7 text-white/75">
+            {isEs
+              ? "La mayoría de guías repiten la descripción oficial. Lo que importa de verdad es el orden: una colonia que solo cría soldados se muere de hambre. Los trabajadores son la base, los soldados la punta."
+              : "Most guides repeat the official description. What actually matters is the order: a colony that only breeds fighters starves. Workers are the base, fighters are the tip."}
+          </p>
+        </div>
       </section>
 
       <AdsterraArticleTop />
@@ -148,15 +136,6 @@ export default async function LocaleHomePage({ params }: { params: Promise<{ loc
       </section>
 
       <AdsterraArticleMid />
-
-      {/* ★ Deep differentiator — the food-before-fighters insight */}
-      <section className="bg-white/[0.025]" data-home-block-id="deep-differentiator">
-        <div className="mx-auto max-w-7xl px-4 py-12">
-          <SectionHeader eyebrow={isEs ? "Lo que nadie te dice" : "What nobody tells you"} title={isEs ? "La comida va antes que la guerra" : "Food before war"} copy={isEs
-            ? "La mayoría de guías repiten la descripción oficial. Lo que importa de verdad es el orden: una colonia que solo cría soldados se muere de hambre. Los trabajadores son la base, los soldados la punta."
-            : "Most guides repeat the official description. What actually matters is the order: a colony that only breeds fighters starves. Workers are the base, fighters are the tip."} />
-        </div>
-      </section>
 
       {/* ★ Task hubs — funnel into the intent matrix by player state */}
       <section className="mx-auto max-w-7xl px-4 py-12" data-home-block-id="task-hubs">

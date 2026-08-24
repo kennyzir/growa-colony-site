@@ -44,7 +44,7 @@ export const homepageContract = {
   },
 
   requiredModules: [
-    "hero", "main-engine", "critical-answers", "core-loop",
+    "main-engine", "critical-answers", "core-loop",
     "task-hubs", "deep-differentiator", "guide-map",
   ],
 
