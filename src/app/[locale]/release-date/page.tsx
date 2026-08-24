@@ -7,6 +7,7 @@ import { monthLabel, siteConfig } from "@/data/site";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 import { VerificationBox } from "@/components/ui/VerificationBox";
+import { MainEngineBacklink } from "@/components/ui/MainEngineBacklink";
 import { gameGenre, gameCreator, gameVisits, gamePlaying, gameCreatedIso, gameUpdatedIso, colonySystems } from "@/data/game-db";
 import { AdsterraArticleTop, AdsterraArticleMid } from "@/components/ads";
 
@@ -97,7 +98,6 @@ export default async function ReleaseDatePage({ params }: { params: Promise<{ lo
       <BreadcrumbJsonLd items={[{ name: isEs ? "Inicio" : "Home", href: `${prefix}/` }, { name: T.crumb, href: `${prefix}/release-date` }]} />
       <FaqJsonLd items={[{ q: T.faq1q, a: T.faq1a }, { q: T.faq2q, a: T.faq2a }, { q: T.faq3q, a: T.faq3a }]} />
       <Breadcrumbs items={[{ label: T.crumb, href: `${prefix}/release-date` }]} />
-      <VerificationBox />
       <PageIntro eyebrow="Grow A Colony · Release Date" title={T.introTitle} description={T.introDesc} />
       <AdsterraArticleTop />
 
@@ -148,6 +148,8 @@ export default async function ReleaseDatePage({ params }: { params: Promise<{ lo
           <Link href={`${prefix}/updates`} className="content-card"><strong>{T.upLink}</strong><p className="mt-1 text-sm text-white/60">{T.upDesc}</p></Link>
         </div>
       </section>
+      <MainEngineBacklink isEs={isEs} />
+      <VerificationBox />
     </main>
   );
 }

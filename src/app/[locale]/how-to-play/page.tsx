@@ -7,6 +7,7 @@ import { monthLabel, siteConfig } from "@/data/site";
 import { BreadcrumbJsonLd, FaqJsonLd, HowToJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 import { VerificationBox } from "@/components/ui/VerificationBox";
+import { MainEngineBacklink } from "@/components/ui/MainEngineBacklink";
 import { PlayQuickRules, VideoGuide, DataTable } from "@/components/ui/EvomonBlocks";
 import { PerPageLinks } from "@/components/ui/PerPageLinks";
 import { gameEntities, colonySystems, gameGenre, gameCreator } from "@/data/game-db";
@@ -115,7 +116,6 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
       <FaqJsonLd items={[{ q: T.faq1q, a: T.faq1a }, { q: T.faq2q, a: T.faq2a }]} />
       <HowToJsonLd name={T.introTitle} description={T.introDesc} steps={T.section2Steps.slice(0, 3).map((s) => ({ name: s[0], text: s[1] }))} />
       <Breadcrumbs items={[{ label: T.crumb, href: `${prefix}/how-to-play` }]} />
-      <VerificationBox />
       <PageIntro eyebrow="Grow A Colony · How to Play" title={T.introTitle} description={T.introDesc} />
       <PlayQuickRules label={isEs ? "En 30 segundos" : "In 30 seconds"} rules={qrRules} />
       {/* Creator evidence — real colony-play videos (yt-content-miner, yt-dlp-verified) */}
@@ -217,6 +217,8 @@ export default async function HowToPlayPage({ params }: { params: Promise<{ loca
           },
         ]}
       />
+      <MainEngineBacklink isEs={isEs} />
+      <VerificationBox />
     </main>
   );
 }

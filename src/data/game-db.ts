@@ -28,7 +28,7 @@ export const gameEntities: GameEntity[] = [
     colonyJob: "Ruling / management",
     claimState: "Verified",
     source: "Official Roblox description (sebcaddy1, 2026-08-23)",
-    blurb: "In [TERMITE] Grow A Colony you play as the queen. You command an AI colony of workers and fighters, so your job is managing the colony's population and direction rather than acting alone on the battlefield.",
+    blurb: "In [SKILLS] Grow A Colony you play as the queen. You command an AI colony of workers and fighters, so your job is managing the colony's population and direction rather than acting alone on the battlefield.",
   },
   {
     slug: "workers",
@@ -65,14 +65,17 @@ export const colonySystems: Array<{ name: string; whatItIs: string; claimState: 
   { name: "Combat castes", whatItIs: "Majors & Drones form the colony's fighting force against threats.", claimState: "Verified", source: "Official Roblox description" },
 ];
 
-export const gameGenre = "Animal Sim";   // official genre_l2, games API 2026-08-23
+export const gameGenre = "Animal Sim";   // official genre_l2, games API 2026-08-24
 export const gameCreator = "sebcaddy1";
 export const gameCreatedIso = "2026-07-31";
 export const gameUpdatedIso = "2026-08-23";
 export const gamePlaceId = "103154273080028";
 export const gameUniverseId = "10601273666";
-export const gameVisits = 305663;        // games API 2026-08-23
-export const gamePlaying = 928;          // games API 2026-08-23
+export const gameVisits = 394250;        // games API 2026-08-24
+export const gamePlaying = 1547;         // games API 2026-08-24
+export const gameFavorites = 5055;
+export const gameUpVotes = 2743;         // games API votes 2026-08-24
+export const gameDownVotes = 575;
 
 export function getGameEntity(slug: string) {
   return gameEntities.find((e) => e.slug === slug);

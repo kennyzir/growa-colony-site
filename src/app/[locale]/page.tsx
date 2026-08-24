@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { setRequestLocale, getTranslations } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { locales } from "@/i18n/locales";
-import { activeCodes, editorialSignals, faqs, guideClusters, heroMetrics, officialLinks, playerJourney, siteConfig, toolCards, videoGuides, wikiCards } from "@/data/site";
-import { editorialSignalsEs, guideClustersEs, heroMetricsEs, officialLinksEs, playerJourneyEs, shortDisclosureEs, videoGuidesEs, valuePropositionEs } from "@/data/home-es";
-import { VideoGuide } from "@/components/ui/EvomonBlocks";
-import { VerificationBox } from "@/components/ui/VerificationBox";
-import { gameGenre, gameCreator, gameUpdatedIso } from "@/data/game-db";
+import { activeCodes, faqs, officialLinks, siteConfig } from "@/data/site";
+import { homepageContract } from "@/data/homepage-contract";
+import { gameGenre, gameCreator, gameEntities, gameVisits, gamePlaying, gameUpdatedIso } from "@/data/game-db";
 import { VideoGameJsonLd, FaqJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
-import { SectionHeader, TrustNote } from "@/components/ui/content";
+import { SectionHeader } from "@/components/ui/content";
 import { BrandHero } from "@/components/home/BrandHero";
-import { AdsterraArticleTop } from "@/components/ads";
-
-const HOMEPAGE_NS = "homePage";
+import { AdsterraArticleTop, AdsterraArticleMid } from "@/components/ads";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -25,8 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const base = siteConfig.domain;
   if (locale === "es") {
     return {
-      title: "Grow A Colony Códigos, Cómo Jugar y Actualizaciones",
-      description: "Códigos de Grow A Colony, cómo jugar, fecha de lanzamiento y actualizaciones — una wiki de fans enfocada de Grow A Colony.",
+      title: "Grow A Colony: Cómo Crecer tu Colonia, Códigos y Novedades",
+      description: "Grow A Colony: cría trabajadores para comida, Majors y Drones para pelear — más códigos, fecha y novedades.",
       alternates: {
         canonical: `${base}/es/`,
         languages: { "en-US": `${base}/en/`, es: `${base}/es/`, "x-default": `${base}/en/` }
@@ -46,156 +42,153 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function LocaleHomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: HOMEPAGE_NS });
-  const ts = await getTranslations({ locale, namespace: "shared" });
   if (locale !== "en" && locale !== "es") notFound();
   const prefix = locale === "es" ? "/es" : "/en";
   const isEs = locale === "es";
   const localHref = (href: string) => (isEs && href.startsWith("/en") ? href.replace("/en", "/es") : href);
 
-  const clusters = isEs ? guideClustersEs : guideClusters;
-  const journey = isEs ? playerJourneyEs : playerJourney;
-  const ol = isEs ? officialLinksEs : officialLinks;
-  const esig = isEs ? editorialSignalsEs : editorialSignals;
-  const vids = isEs ? videoGuidesEs : videoGuides;
-  const metrics = isEs ? heroMetricsEs : heroMetrics;
-  const valueProp = isEs ? valuePropositionEs : siteConfig.valueProposition;
-  const shortDisc = isEs ? shortDisclosureEs : siteConfig.shortDisclosure;
+  const job = isEs ? homepageContract.primaryPlayerJobEs : homepageContract.primaryPlayerJob;
 
   return (
     <main>
       <WebSiteJsonLd />
       <VideoGameJsonLd />
       <FaqJsonLd items={faqs.home} />
-      <VerificationBox />
-      <BrandHero isEs={isEs} valueProp={valueProp} shortDisc={shortDisc} />
 
+      <section data-home-block-id="hero">
+        <BrandHero
+          isEs={isEs}
+          valueProp={isEs ? "Sé la reina → cría trabajadores para comida → Majors y Drones para pelear" : "Be the queen → grow workers for food → Majors & Drones to fight"}
+          shortDisc={isEs
+            ? `Grow A Colony es un ${gameGenre} de Roblox por ${gameCreator}. Aquí decides el orden de crecimiento de tu colonia y la haces prosperar sin estancarte.`
+            : `Grow A Colony is a Roblox ${gameGenre} by ${gameCreator}. Here you decide your colony's growth order and make it thrive without stalling.`}
+        />
+      </section>
+
+      {/* Live game data — entity identity + freshness (single source of truth) */}
       <section className="border-y border-white/10 bg-black/25">
         <div className="mx-auto grid max-w-7xl gap-px px-4 py-5 sm:grid-cols-3">
-          {metrics.map((m) => (
-            <div key={m.label} className="bg-white/[0.03] px-4 py-4">
-              <div className="text-2xl font-bold text-[color:var(--accent)]">{m.value}</div>
-              <div className="mt-1 text-sm font-semibold text-white">{m.label}</div>
-              <div className="mt-1 text-sm text-white/60">{m.note}</div>
+          <div className="bg-white/[0.03] px-4 py-4">
+            <div className="text-2xl font-bold text-[color:var(--accent)]">{(gamePlaying / 1000).toFixed(1)}K</div>
+            <div className="mt-1 text-sm font-semibold text-white">{isEs ? "Jugando ahora" : "Playing now"}</div>
+            <div className="mt-1 text-sm text-white/60">{isEs ? "API oficial de Roblox, en vivo" : "Official Roblox API, live"}</div>
+          </div>
+          <div className="bg-white/[0.03] px-4 py-4">
+            <div className="text-2xl font-bold text-[color:var(--accent)]">{(gameVisits / 1000).toFixed(0)}K</div>
+            <div className="mt-1 text-sm font-semibold text-white">{isEs ? "Visitas totales" : "Total visits"}</div>
+            <div className="mt-1 text-sm text-white/60">{isEs ? "API oficial de Roblox" : "Official Roblox API visits"}</div>
+          </div>
+          <div className="bg-white/[0.03] px-4 py-4">
+            <div className="text-2xl font-bold text-[color:var(--accent)]">{gameGenre}</div>
+            <div className="mt-1 text-sm font-semibold text-white">{isEs ? "Género" : "Genre"}</div>
+            <div className="mt-1 text-sm text-white/60">{isEs ? "Simulación de colonia" : "Colony sim"}</div>
+          </div>
+        </div>
+      </section>
+
+      {/* ★ MAIN ENGINE — the first-hour decision route (the page's reason to exist) */}
+      <section className="mx-auto max-w-7xl px-4 py-12" data-home-block-id="main-engine">
+        <SectionHeader
+          eyebrow={isEs ? "La decisión clave" : "The one decision"}
+          title={isEs ? "Qué criar primero: trabajadores o soldados" : "What to grow first: workers or fighters"}
+          copy={job}
+        />
+        <ol className="mt-6 grid gap-3 text-sm text-white/75">
+          {homepageContract.firstHourRoute.map((s) => (
+            <li key={s.step} className="rounded-lg border border-white/10 bg-black/20 p-4">
+              <strong className="text-white">{s.step}. {s.title}</strong>
+              <p className="mt-1 text-white/65">{s.why}</p>
+              <Link href={localHref(s.href)} className="mt-2 inline-block text-xs font-semibold text-[color:var(--accent)] hover:underline">→ {isEs ? "Leer la guía" : "Read the guide"}</Link>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <AdsterraArticleTop />
+
+      {/* ★ Critical answers — 2-3 directly usable answers */}
+      <section className="bg-white/[0.025]" data-home-block-id="critical-answers">
+        <div className="mx-auto max-w-7xl px-4 py-12">
+          <SectionHeader eyebrow={isEs ? "Rápido" : "Quick answers"} title={isEs ? "Las 3 cosas que todo nuevo jugador pregunta" : "The 3 things every new player asks"} />
+          <div className="mt-6 grid gap-3 text-sm text-white/75">
+            <div className="rounded-lg border border-white/10 bg-black/20 p-4">
+              <strong className="text-white">{isEs ? "¿Para qué sirven los trabajadores?" : "What are workers for?"}</strong>
+              <p className="mt-1 text-white/65">{isEs ? "Comida. La descripción oficial lo dice: 'consigue Workers para comida'. Son la economía de la colonia — sin comida no crece nada." : "Food. The official description says it: 'get Workers for food.' They're the colony's economy — without food nothing grows."}</p>
+            </div>
+            <div className="rounded-lg border border-white/10 bg-black/20 p-4">
+              <strong className="text-white">{isEs ? "¿Majors o Drones?" : "Majors or Drones?"}</strong>
+              <p className="mt-1 text-white/65">{isEs ? "Ambos son para pelear. Los Majors son la defensa pesada, los Drones un segundo grupo de combate. Críalos después de tener la comida asegurada." : "Both are for fighting. Majors are heavy defense, Drones a second combat caste. Grow them after food is secure."}</p>
+            </div>
+            <div className="rounded-lg border border-white/10 bg-black/20 p-4">
+              <strong className="text-white">{isEs ? "¿Hay códigos activos?" : "Are there active codes?"}</strong>
+              <p className="mt-1 text-white/65">
+                {activeCodes.length === 0
+                  ? (isEs ? "Ninguno confirmado ahora mismo." : "None confirmed right now.")
+                  : (isEs ? <>La comunidad reporta <code className="font-mono text-[color:var(--accent)]">{activeCodes.map(c => c.code).join(", ")}</code> (sin confirmar).</> : <>The community reports <code className="font-mono text-[color:var(--accent)]">{activeCodes.map(c => c.code).join(", ")}</code> (unconfirmed).</>)}
+                {" "}<Link href={localHref("/en/codes")} className="font-semibold text-[color:var(--accent)] hover:underline">{isEs ? "Ver códigos" : "See codes"}</Link>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ★ Core loop — the whole game in one pass */}
+      <section className="mx-auto max-w-7xl px-4 py-12" data-home-block-id="core-loop">
+        <SectionHeader eyebrow={isEs ? "El bucle" : "The loop"} title={isEs ? "Cómo funciona Grow A Colony" : "How Grow A Colony works"} copy={isEs
+          ? "La descripción oficial lo resume: sé la reina 👑 → consigue Workers para comida 🍞 → consigue Majors y Drones para pelear ⚔️. Tú mandas una colonia de IA, no peleas solo."
+          : "The official description sums it up: be the queen 👑 → get Workers for food 🍞 → get Majors & Drones for fighting ⚔️. You command an AI colony, you don't fight alone."} />
+        <div className="mt-4 grid gap-3 text-sm text-white/75">
+          {gameEntities.map((e) => (
+            <div key={e.slug} className="rounded-lg border border-white/10 bg-black/20 p-4">
+              <strong className="text-white">{e.name}</strong> <span className="text-white/50">— {e.colonyJob}</span>
+              <p className="mt-1 text-white/65">{e.blurb}</p>
             </div>
           ))}
         </div>
       </section>
-      <AdsterraArticleTop />
 
-      {/* Creator evidence — real colony gameplay (yt-content-miner, yt-dlp-verified) */}
-      <section className="mx-auto max-w-7xl px-4 pt-8">
-        <VideoGuide
-          eyebrow={isEs ? "Creadores" : "Creators"}
-          title={isEs ? "Así se juega de verdad" : "Watch real colony gameplay"}
-          description={isEs
-            ? "Los videos de los creadores muestran el bucle real de construir una colonia de hormigas, más allá de la descripción oficial. Todos los embeds están verificados con yt-dlp."
-            : "Creator videos show the real ant-colony building loop beyond the official description. All embeds are yt-dlp-verified."}
-          embedId="gjxGgBoI_Ok"
-        />
-      </section>
+      <AdsterraArticleMid />
 
-      {/* Query Router: what are you here to do */}
-      <section className="mx-auto max-w-7xl px-4 py-12">
-        <SectionHeader eyebrow={t("route_eyebrow")} title={t("route_title")} copy={t("route_copy")} />
-        <div className="mt-6 grid gap-4 lg:grid-cols-3">
-          <div className="rounded-lg border border-white/10 bg-black/20 p-5">
-            <span className="mini-label">{t("create_eyebrow")}</span>
-            <h2 className="mt-3 text-lg font-bold text-white">{t("create_title")}</h2>
-            <p className="mt-2 text-sm text-white/70">{t("create_copy")}</p>
-            <Link href={localHref("/en/how-to-play")} className="mt-3 inline-block text-sm font-semibold text-[color:var(--accent)] hover:underline">→ {t("create_title")}</Link>
-          </div>
-          <div className="rounded-lg border border-white/10 bg-black/20 p-5">
-            <span className="mini-label">{t("style_eyebrow")}</span>
-            <h2 className="mt-3 text-lg font-bold text-white">{t("style_title")}</h2>
-            <p className="mt-2 text-sm text-white/70">{t("style_copy")}</p>
-            <Link href={localHref("/en/how-to-play")} className="mt-3 inline-block text-sm font-semibold text-[color:var(--accent)] hover:underline">→ {t("style_title")}</Link>
-          </div>
-          <div className="rounded-lg border border-white/10 bg-black/20 p-5">
-            <span className="mini-label">{t("roleplay_eyebrow")}</span>
-            <h2 className="mt-3 text-lg font-bold text-white">{t("roleplay_title")}</h2>
-            <p className="mt-2 text-sm text-white/70">{t("roleplay_copy")}</p>
-            <Link href={localHref("/en/how-to-play")} className="mt-3 inline-block text-sm font-semibold text-[color:var(--accent)] hover:underline">→ {t("roleplay_title")}</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Codes strip */}
-      <section className="bg-white/[0.025]">
+      {/* ★ Deep differentiator — the food-before-fighters insight */}
+      <section className="bg-white/[0.025]" data-home-block-id="deep-differentiator">
         <div className="mx-auto max-w-7xl px-4 py-12">
-          <SectionHeader eyebrow="Freshness" title={t("qa_title")} copy={t("qa_copy")} />
-          <div className="mt-6 rounded-lg border border-white/10 bg-black/20 p-5 text-sm text-white/70">
-            {activeCodes.length === 0 ? (
-              <>{t("no_codes", { fallback: "No active codes listed right now." })}</>
-            ) : (
-              activeCodes.map((c) => <div key={c.code}><strong className="text-white">{c.code}</strong> — {c.reward}</div>)
-            )}
-            <Link href={localHref("/en/codes")} className="mt-3 inline-block font-semibold text-[color:var(--accent)] hover:underline">→ {isEs ? "Estado de códigos" : "Codes status"}</Link>
-          </div>
+          <SectionHeader eyebrow={isEs ? "Lo que nadie te dice" : "What nobody tells you"} title={isEs ? "La comida va antes que la guerra" : "Food before war"} copy={isEs
+            ? "La mayoría de guías repiten la descripción oficial. Lo que importa de verdad es el orden: una colonia que solo cría soldados se muere de hambre. Los trabajadores son la base, los soldados la punta."
+            : "Most guides repeat the official description. What actually matters is the order: a colony that only breeds fighters starves. Workers are the base, fighters are the tip."} />
         </div>
       </section>
 
-      {/* Create / Style / RP guide clusters */}
-      <section className="mx-auto max-w-7xl px-4 py-12">
-        <SectionHeader eyebrow={t("qa_eyebrow")} title={isEs ? "Guías de Grow A Colony" : "Grow A Colony guides"} copy={isEs ? "Desde empezar a hacer crecer tu colonia hasta seguir sus novedades — elige una ruta." : "From starting your colony to tracking its updates — pick a route."} />
-        <div className="mt-6 grid gap-3">
-          {clusters.map((c) => (
-            <Link key={c.href} href={localHref(c.href)} className="row-link">
-              <span><strong>{c.title}</strong><small>{c.description}</small></span>
-              <span aria-hidden="true">-&gt;</span>
+      {/* ★ Task hubs — funnel into the intent matrix by player state */}
+      <section className="mx-auto max-w-7xl px-4 py-12" data-home-block-id="task-hubs">
+        <SectionHeader eyebrow={isEs ? "Tu estado" : "Where are you?"} title={isEs ? "Elige tu situación" : "Pick your situation"} />
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {homepageContract.hubPlan.map((h) => (
+            <Link key={h.target} href={localHref(h.target)} className="rounded-lg border border-white/10 bg-black/20 p-5 hover:border-white/25">
+              <span className="mini-label">{h.playerState}</span>
+              <strong className="mt-2 block text-lg text-white">{h.label}</strong>
+              <p className="mt-1 text-sm text-white/65">{h.nextDecision}</p>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* Player journey */}
-      <section className="bg-white/[0.025]">
+      {/* ★ Guide map — the full sitemap of this game's answers */}
+      <section className="bg-white/[0.025]" data-home-block-id="guide-map">
         <div className="mx-auto max-w-7xl px-4 py-12">
-          <SectionHeader eyebrow={isEs ? "Ruta" : "Route"} title={isEs ? "Tu recorrido por Grow A Colony" : "Your Grow A Colony journey"} copy={isEs ? "Canjea, construye, expande y sigue las novedades — en ese orden." : "Redeem, build, expand, then track updates — in that order."} />
-          <div className="mt-6 grid gap-4 lg:grid-cols-2">
-            {journey.map((stage) => (
-              <div key={stage.number} className="rounded-lg border border-white/10 bg-black/20 p-5">
-                <span className="mini-label">{stage.question}</span>
-                <Link href={localHref(stage.href)} className="mt-3 block text-lg font-bold text-white hover:text-[color:var(--accent)]"><span className="mr-2 text-[color:var(--accent)]">{stage.number}.</span>{stage.title}</Link>
-                <p className="mt-2 text-sm text-white/70">{stage.answer}</p>
-                <div className="mt-4 grid gap-2">
-                  {stage.links.map((l) => (
-                    <Link key={l.href} href={localHref(l.href)} className="row-link">
-                      <span><strong>{l.label}</strong><small>{l.description}</small></span>
-                      <span aria-hidden="true">-&gt;</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Sources + EEAT */}
-      <section className="mx-auto max-w-7xl px-4 py-12">
-        <SectionHeader eyebrow={t("src_eyebrow")} title={t("src_title")} copy={t("src_copy")} />
-        <div className="mt-6 grid gap-4 lg:grid-cols-3">
-          {ol.map((link) => (
-            link.href.startsWith("/") ? (
-              <Link key={link.href} href={localHref(link.href)} className="content-card"><span className="mini-label">{link.miniLabel}</span><h3 className="mt-3 text-lg font-bold text-white">{link.title}</h3><p className="mt-2 text-sm text-white/65">{link.description}</p></Link>
-            ) : (
-              <a key={link.href} href={link.href} className="content-card" target="_blank" rel="noreferrer"><span className="mini-label">{link.miniLabel}</span><h3 className="mt-3 text-lg font-bold text-white">{link.title}</h3><p className="mt-2 text-sm text-white/65">{link.description}</p></a>
-            )
-          ))}
-        </div>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {esig.map((s) => <TrustNote key={s.title} title={s.title} body={s.body} />)}
-        </div>
-      </section>
-
-      {/* Videos */}
-      <section className="bg-white/[0.025]">
-        <div className="mx-auto max-w-7xl px-4 py-12">
-          <SectionHeader eyebrow={t("video_eyebrow")} title={t("video_title")} copy={t("video_copy")} />
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {vids.map((v) => (
-              <a key={v.href} href={v.href} className="content-card" target="_blank" rel="noreferrer"><span className="mini-label">{v.miniLabel}</span><h3 className="mt-3 text-lg font-bold text-white">{v.title}</h3><p className="mt-2 text-sm text-white/65">{v.description}</p></a>
+          <SectionHeader eyebrow={isEs ? "Mapa" : "Map"} title={isEs ? "Todo lo que cubre esta wiki" : "Everything this wiki covers"} />
+          <div className="mt-6 grid gap-3">
+            {officialLinks.map((link) => (
+              link.href.startsWith("/") ? (
+                <Link key={link.href} href={localHref(link.href)} className="row-link">
+                  <span><strong>{link.title}</strong><small>{link.description}</small></span>
+                  <span aria-hidden="true">-&gt;</span>
+                </Link>
+              ) : (
+                <a key={link.href} href={link.href} className="row-link" target="_blank" rel="noreferrer">
+                  <span><strong>{link.title}</strong><small>{link.description}</small></span>
+                  <span aria-hidden="true">-&gt;</span>
+                </a>
+              )
             ))}
           </div>
         </div>

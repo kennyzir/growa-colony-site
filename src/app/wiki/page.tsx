@@ -4,12 +4,13 @@ import { monthLabel, siteConfig } from "@/data/site";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 import { VerificationBox } from "@/components/ui/VerificationBox";
+import { MainEngineBacklink } from "@/components/ui/MainEngineBacklink";
 import { gameGenre, gameCreator, gameEntities, colonySystems } from "@/data/game-db";
 import { AdsterraArticleBottom, AdsterraArticleTop, AdsterraArticleMid } from "@/components/ads";
 
 export const metadata: Metadata = {
   title: `${siteConfig.gameName} Wiki — Rule Your Colony · ${monthLabel}`,
-  description: `A focused fan wiki for Grow A Colony: rule as the Queen, grow your Workers, raise Majors & Drones, and track codes, updates, and history — with honest sourcing.`,
+  description: `Grow A Colony: rule as the Queen, grow your Workers, raise Majors & Drones, and track codes, updates, and history.`,
   alternates: { canonical: `${siteConfig.domain}/wiki` }
 };
 
@@ -21,12 +22,11 @@ export default function WikiPage() {
         { q: "What is Grow A Colony?", a: `A ${gameGenre} on Roblox by ${gameCreator}: you play as the Queen and rule an AI colony. The official description says to get Workers for food and Majors & Drones for fighting.` },
         { q: "Is it a combat game?", a: "It combines colony management with caste combat — you grow a Worker economy for food and raise Majors/Drones to fight. It is not a shooter or a tunnel-building sim first." },
         { q: "What are Workers, Majors, and Drones?", a: "Workers gather food for the colony, and Majors & Drones are the fighting castes. This split comes straight from the official description." },
-        { q: "How do I get codes?", a: "We list only codes we can verify from an official source. If none are confirmed, the codes page says so honestly." },
+        { q: "How do I get codes?", a: "Codes come from official drops and dated creator videos. If none are confirmed, the codes page lists exactly what's known or unknown." },
         { q: "When did Grow A Colony launch?", a: "Grow A Colony was created 31 July 2026 per the official Roblox API. See the release date page for details." }
       ]} />
       <Breadcrumbs items={[{ label: "Wiki", href: "/wiki" }]} />
-      <VerificationBox />
-      <PageIntro eyebrow="Grow A Colony · Wiki" title="Grow A Colony Wiki Explorer" description={`A focused fan wiki for ${siteConfig.gameName}: what it is (a ${gameGenre} by ${gameCreator} where you rule as the Queen), how to play, the Working/Major/Drone colony castes, and how to track codes and updates. This is an unofficial fan resource: every piece of info carries its source and claim state.`} />
+      <PageIntro eyebrow="Grow A Colony · Wiki" title="Grow A Colony Wiki Explorer" description={`Everything about ${siteConfig.gameName}: what it is (a ${gameGenre} by ${gameCreator} where you rule as the Queen and command Workers, Majors & Drones), plus codes, updates, and history.`} />
       <AdsterraArticleTop />
 
       <section className="mt-10">
@@ -58,7 +58,7 @@ export default function WikiPage() {
       <section className="mt-10">
         <SectionHeader eyebrow="Fresh" title="Track: codes, updates, history" copy="As a young, rapidly-changing game, keeping current matters. The codes page reports only verified rewards, the updates page tracks real changes, and the release date page anchors the game's history." />
         <div className="mt-4 grid gap-4 md:grid-cols-3">
-          <Link href="/en/codes" className="content-card"><strong>Codes</strong><p className="mt-1 text-sm text-white/60">Verified reward code status, or an honest 'none confirmed yet'.</p></Link>
+          <Link href="/en/codes" className="content-card"><strong>Codes</strong><p className="mt-1 text-sm text-white/60">Reward code status — what's confirmed and what isn't.</p></Link>
           <Link href="/en/updates" className="content-card"><strong>Updates</strong><p className="mt-1 text-sm text-white/60">What changed in the latest Grow A Colony update.</p></Link>
           <Link href="/en/release-date" className="content-card"><strong>Release date</strong><p className="mt-1 text-sm text-white/60">Created 31 July 2026 — the game's official data.</p></Link>
         </div>
@@ -67,8 +67,8 @@ export default function WikiPage() {
       <AdsterraArticleMid />
 
       <section className="mt-10">
-        <SectionHeader eyebrow="How we verify" title="Honest sourcing" copy="This is an unofficial fan resource. Grow A Colony and its developers remain the source of record — we never invent a code, mechanic, or update. Facts above trace to the official Roblox description (queen + Workers/Majors/Drones), the Roblox API, and dated creator videos." />
-        <p className="mt-4 text-sm leading-7 text-white/70">Changes only count if they come from the official Roblox game page or a dated source. Anything we cannot date or source is labeled as unconfirmed rather than guessed. The source status page is our ledger.</p>
+        <SectionHeader eyebrow="What counts" title="What a change has to be" copy="A change only counts if it comes from the official Roblox game page or a dated source. Anything we cannot date or source gets marked unconfirmed, not guessed." />
+        <p className="mt-4 text-sm leading-7 text-white/70">Facts on this wiki trace to the official Roblox description (Queen + Workers/Majors/Drones), the Roblox API, and dated creator videos. The sources page lists what was checked and when.</p>
       </section>
 
       <section className="mt-10">
@@ -81,6 +81,8 @@ export default function WikiPage() {
       </section>
 
       <AdsterraArticleBottom />
+      <MainEngineBacklink />
+      <VerificationBox />
     </main>
   );
 }

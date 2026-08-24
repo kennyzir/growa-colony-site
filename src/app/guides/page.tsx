@@ -4,6 +4,7 @@ import { monthLabel, siteConfig } from "@/data/site";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 import { VerificationBox } from "@/components/ui/VerificationBox";
+import { MainEngineBacklink } from "@/components/ui/MainEngineBacklink";
 import { gameGenre, gameCreator, gameEntities } from "@/data/game-db";
 import { AdsterraArticleBottom, AdsterraArticleTop, AdsterraArticleMid } from "@/components/ads";
 
@@ -24,7 +25,6 @@ export default function GuidesPage() {
         { q: "Are there active codes?", a: "We only list verified codes from an official source. If none are confirmed, the codes page says so honestly." }
       ]} />
       <Breadcrumbs items={[{ label: "Guides", href: "/guides" }]} />
-      <VerificationBox />
       <PageIntro eyebrow="Grow A Colony · Guides" title="Grow A Colony Guides" description={`Focused guides for ${siteConfig.gameName}: what it is (a ${gameGenre} by ${gameCreator}), how to rule your colony as the Queen, grow Workers, and raise Majors & Drones. Every guide carries its source and claim state.`} />
       <AdsterraArticleTop />
 
@@ -32,7 +32,7 @@ export default function GuidesPage() {
         <SectionHeader eyebrow="First" title="Rule your colony as the Queen" copy="You are not a single fighter — you are the Queen of an AI colony. The official description sets the loop: get Workers for food, and Majors/Drones for fighting. Your role is management: steer the colony's economy (Workers) and its combat force (Majors/Drones). Start your first session by understanding this split, then focus on feeding the colony so it can grow." />
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <Link href="/en/how-to-play" className="content-card"><strong>How to play</strong><p className="mt-1 text-sm text-white/60">The full first-day loop: Queen role, Worker economy, combat castes.</p></Link>
-          <Link href="/en/codes" className="content-card"><strong>Redeem codes</strong><p className="mt-1 text-sm text-white/60">Verified reward code status — or an honest none-yet.</p></Link>
+          <Link href="/en/codes" className="content-card"><strong>Redeem codes</strong><p className="mt-1 text-sm text-white/60">Reward code status — what's confirmed right now.</p></Link>
         </div>
       </section>
 
@@ -54,7 +54,7 @@ export default function GuidesPage() {
         <SectionHeader eyebrow="Track" title="Keep current with updates & codes" copy="As a recent, fast-changing game, staying current matters. The updates page tracks real changes, and the codes page reports only verified rewards — never invented code strings." />
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <Link href="/en/updates" className="content-card"><strong>Updates</strong><p className="mt-1 text-sm text-white/60">What changed in the latest Grow A Colony update.</p></Link>
-          <Link href="/en/codes" className="content-card"><strong>Codes</strong><p className="mt-1 text-sm text-white/60">Verified reward code status, or an honest empty state.</p></Link>
+          <Link href="/en/codes" className="content-card"><strong>Codes</strong><p className="mt-1 text-sm text-white/60">Reward code status, or what's still unconfirmed.</p></Link>
         </div>
       </section>
 
@@ -68,6 +68,8 @@ export default function GuidesPage() {
       </section>
 
       <AdsterraArticleBottom />
+      <MainEngineBacklink />
+      <VerificationBox />
     </main>
   );
 }

@@ -7,6 +7,7 @@ import { activeCodes, checkedDate, expiredCodes, faqs, monthLabel, siteConfig } 
 import { BreadcrumbJsonLd, ClaimReviewJsonLd, FaqJsonLd, HowToJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader, TrustNote } from "@/components/ui/content";
 import { VerificationBox } from "@/components/ui/VerificationBox";
+import { MainEngineBacklink } from "@/components/ui/MainEngineBacklink";
 import { AdsterraArticleMid, AdsterraArticleTop } from "@/components/ads";
 
 export function generateStaticParams() {
@@ -85,8 +86,8 @@ export default async function CodesPage({ params }: { params: Promise<{ locale: 
     eyebrow: isEs ? "Grow A Colony · Códigos" : "Grow A Colony · Codes",
     introTitle: isEs ? `Códigos de Grow A Colony (${monthLabel})` : `${siteConfig.gameName} Codes (${monthLabel})`,
     introDesc: isEs
-      ? "Estado actual de los códigos de recompensa de Grow A Colony. Solo mostramos códigos que podemos fechar y verificar desde una fuente oficial — nunca cadenas inventadas. Si no hay códigos confirmados, este estado lo dice con honestidad."
-      : "Current Grow A Colony reward code status. We list only codes we can date and verify from an official source — never invented strings. If no code is confirmed, this status page says so honestly.",
+      ? "Estado actual de los códigos de Grow A Colony: sin códigos confirmados por ahora. Cuando un drop oficial o un video fechado confirme uno, la lista de abajo se actualiza."
+      : "Current Grow A Colony codes: none confirmed right now. When an official drop or a dated creator video confirms one, the list below updates.",
     activeEyebrow: isEs ? "Códigos activos" : "Active codes",
     activeTitle: isEs ? "Códigos de recompensa confirmados" : "Confirmed reward codes",
     activeCopy: isEs ? "Los códigos de aquí están verificados contra una fuente actual y fechada. Los códigos duran poco, así que esta lista puede estar vacía." : "Codes here are verified against a current, dated source. Codes are short-lived, so this list may be empty.",
@@ -209,6 +210,7 @@ export default async function CodesPage({ params }: { params: Promise<{ locale: 
       </section>
 
       <AdsterraArticleMid />
+      <MainEngineBacklink isEs={isEs} />
     </main>
   );
 }

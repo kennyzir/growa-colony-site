@@ -8,6 +8,7 @@ import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader, TrustNote } from "@/components/ui/content";
 import { PlayQuickRules, VideoGuide } from "@/components/ui/EvomonBlocks";
 import { VerificationBox } from "@/components/ui/VerificationBox";
+import { MainEngineBacklink } from "@/components/ui/MainEngineBacklink";
 import { gameGenre, gameCreator, gameUpdatedIso, gameVisits, gamePlaying, gameCreatedIso, colonySystems } from "@/data/game-db";
 import { AdsterraArticleTop, AdsterraArticleMid } from "@/components/ads";
 
@@ -39,9 +40,9 @@ export default async function UpdatesPage({ params }: { params: Promise<{ locale
     crumb: isEs ? "Actualizaciones" : "Updates",
     introTitle: isEs ? "Actualizaciones de Grow A Colony" : "Grow A Colony updates",
     introDesc: isEs
-      ? "Una página honesta de seguimiento de actualizaciones. Grow A Colony cambia con frecuencia, pero los cambios no siempre se publican como notas de parche oficiales. Aquí explicamos cómo verificar un cambio real, dónde se anuncian las novedades, y qué hemos confirmado hasta ahora — sin inventar notas de parche."
-      : "An honest update-tracking page. Grow A Colony changes often, but changes aren't always published as official patch notes. Here we explain how to verify a real change, where updates get announced, and what we've confirmed so far — without inventing patch notes.",
-    howEyebrow: isEs ? "Cómo verificamos" : "How we verify",
+      ? "Grow A Colony cambia con frecuencia, pero los cambios no siempre se publican como notas de parche oficiales. Aquí explicamos cómo verificar un cambio real, dónde se anuncian las novedades, y qué hemos confirmado hasta ahora — sin inventar notas de parche."
+      : "Grow A Colony changes often, but changes aren't always published as official patch notes. Here we explain how to verify a real change, where updates get announced, and what we've confirmed so far — without inventing patch notes.",
+    howEyebrow: isEs ? "Qué cuenta" : "What counts",
     howT: isEs ? "Qué contamos como actualización real" : "What counts as a real update",
     howB: isEs ? [
       "Cambios en la página oficial del juego en Roblox (fecha de última actualización, descripción).",
@@ -101,7 +102,6 @@ export default async function UpdatesPage({ params }: { params: Promise<{ locale
       <FaqJsonLd items={[{ q: T.faq1q, a: T.faq1a }, { q: T.faq2q, a: T.faq2a }, { q: T.faq3q, a: T.faq3a }]} />
       <Breadcrumbs items={[{ label: T.crumb, href: `${prefix}/updates` }]} />
       <PageIntro eyebrow="Grow A Colony · Updates" title={T.introTitle} description={T.introDesc} />
-      <VerificationBox />
       <VideoGuide
         eyebrow={isEs ? "Creadores" : "Creators"}
         title={isEs ? "Video de la comunidad" : "Creator gameplay evidence"}
@@ -154,6 +154,8 @@ export default async function UpdatesPage({ params }: { params: Promise<{ locale
           <Link href={`${prefix}/release-date`} className="content-card"><strong>{T.relTitle}</strong><p className="mt-1 text-sm text-white/60">{T.relDesc}</p></Link>
         </div>
       </section>
+      <MainEngineBacklink isEs={isEs} />
+      <VerificationBox />
     </main>
   );
 }
