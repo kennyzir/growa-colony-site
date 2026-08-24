@@ -26,6 +26,14 @@ export const homepageContract = {
       "The colony's core decision is economy (food) vs military (defense), the most common early mistake is building fighters before food",
       "The decision order is structurable and reusable (route/checklist), with no in-game guidance",
     ],
+    selectionMeta: {
+      selector: "homepage_engine_selector.py (golden-template, §9 deterministic)",
+      engineFit: 7.25,
+      readiness: "pass",
+      layoutVariant: "route-first",
+      basis: "signals.coreLoop=[rule as Queen, Workers=food, Majors+Drones=fight, balance economy vs military]; largestPlayerMistakes=[breed fighters before food]; irreversibleChoices=[none — castes only]",
+      rejected: "upgrade-roi (readiness=fail: no official prices/inputs → would fabricate a calculator)",
+    },
   },
 
   intentOwnership: {
