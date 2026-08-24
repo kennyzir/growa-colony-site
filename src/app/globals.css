@@ -2,13 +2,13 @@
 
 :root {
   color-scheme: dark;
-  --bg: #101114;
-  --surface: #17191f;
-  --surface-2: #20232b;
-  --text: #f7f7fb;
-  --muted: rgba(247, 247, 251, 0.68);
-  --accent: #facc15;
-  --accent-2: #38bdf8;
+  --bg: #131009;
+  --surface: #1b1710;
+  --surface-2: #262016;
+  --text: #fbf7ec;
+  --muted: rgba(251, 247, 236, 0.7);
+  --accent: #e8b64c;      /* colony amber / honey */
+  --accent-2: #8fbf6a;    /* colony grass green */
 }
 
 html,
@@ -23,6 +23,11 @@ body {
 
 body {
   font-family: var(--font-inter), Arial, sans-serif;
+  /* soil / colony texture — a subtle warm granular feel distinct from the generic template */
+  background-image:
+    radial-gradient(1100px 520px at 78% -10%, rgba(143, 191, 106, 0.07), transparent 62%),
+    radial-gradient(900px 480px at 12% 108%, rgba(232, 182, 76, 0.08), transparent 55%);
+  background-attachment: fixed;
 }
 
 a {
@@ -33,7 +38,10 @@ a {
   position: relative;
   min-height: 620px;
   overflow: hidden;
-  background: #08090c;
+  background:
+    radial-gradient(1200px 560px at 85% 8%, rgba(143, 191, 106, 0.12), transparent 58%),
+    radial-gradient(900px 500px at 5% 96%, rgba(232, 182, 76, 0.16), transparent 55%),
+    #100d07;
 }
 
 .hero-bg {
@@ -48,8 +56,8 @@ a {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(8, 9, 12, 0.92), rgba(8, 9, 12, 0.62) 44%, rgba(8, 9, 12, 0.32)),
-    linear-gradient(0deg, var(--bg), rgba(16, 17, 20, 0) 36%);
+    linear-gradient(90deg, rgba(16, 13, 7, 0.92), rgba(16, 13, 7, 0.62) 44%, rgba(16, 13, 7, 0.32)),
+    linear-gradient(0deg, var(--bg), rgba(19, 16, 9, 0) 36%);
 }
 
 .button-primary,
@@ -58,8 +66,8 @@ a {
   min-height: 44px;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  padding: 0.75rem 1.15rem;
   font-size: 0.95rem;
   font-weight: 800;
   transition:
@@ -109,16 +117,16 @@ a {
 }
 
 .nav-link-featured {
-  border: 1px solid rgba(250, 204, 21, 0.34);
-  background: rgba(250, 204, 21, 0.1);
+  border: 1px solid rgba(232, 182, 76, 0.34);
+  background: rgba(232, 182, 76, 0.1);
   color: white;
 }
 
 .nav-link-featured:hover,
 .nav-link-featured.nav-link-active {
-  border-color: rgba(250, 204, 21, 0.68);
-  background: rgba(250, 204, 21, 0.18);
-  color: #fff7bf;
+  border-color: rgba(232, 182, 76, 0.68);
+  background: rgba(232, 182, 76, 0.18);
+  color: #fff3cf;
 }
 
 .mobile-nav-toggle {
@@ -148,9 +156,9 @@ a {
 
 .content-card,
 .page-intro {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(232, 182, 76, 0.16);
+  border-radius: 14px;
+  background: rgba(27, 23, 16, 0.55);
 }
 
 .content-card {
@@ -160,8 +168,8 @@ a {
 .page-intro {
   padding: 2rem;
   background:
-    linear-gradient(135deg, rgba(250, 204, 21, 0.12), rgba(56, 189, 248, 0.07)),
-    rgba(255, 255, 255, 0.035);
+    linear-gradient(135deg, rgba(232, 182, 76, 0.14), rgba(143, 191, 106, 0.08)),
+    rgba(27, 23, 16, 0.5);
 }
 
 .mini-label,
@@ -198,15 +206,15 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(232, 182, 76, 0.14);
+  border-radius: 14px;
+  background: rgba(27, 23, 16, 0.5);
   padding: 1rem;
   color: white;
 }
 
 .row-link:hover {
-  border-color: rgba(250, 204, 21, 0.35);
+  border-color: rgba(232, 182, 76, 0.4);
 }
 
 .row-link small {
@@ -307,6 +315,19 @@ a {
 }
 
 ::selection {
-  background: rgba(250, 204, 21, 0.35);
+  background: rgba(232, 182, 76, 0.35);
   color: white;
+}
+
+/* Colony surfaces: soften the generic black card fills to the warm soil palette
+   so card interiors match the new theme instead of the shared template. */
+main .bg-black\/20,
+main .bg-black\/25,
+main .bg-black\/40,
+main .bg-white\/\[0\.03\],
+main .bg-white\/\[0\.025\] {
+  background-color: rgba(27, 23, 16, 0.72) !important;
+}
+main .border-white\/10 {
+  border-color: rgba(232, 182, 76, 0.14) !important;
 }
